@@ -3,7 +3,7 @@
 
     "roles" : {
         "apache2" : {
-            "defaultcontext" : "/wagn",
+            "defaultcontext" : "/deck",
             "depends" : [
                 "imagemagick",
                 "memcached",
@@ -61,30 +61,16 @@
                         "${appconfig.datadir}/Gemfile",
                         "${appconfig.datadir}/Rakefile",
                         "${appconfig.datadir}/boot.rb",
-#            "config/airbrake.key", <- Can this be factored out into an accessory?
                         "${appconfig.datadir}/environment.rb",
                         "${appconfig.datadir}/script"
                     ]
                 },
-#                { <- Can this be factored out into an accessory?
-#                    "type": "symlink",
-#                    "target": "/usr/share/decko/web/$1",
-#                    "names": [
-#                        "mod/airbrake"
-#                    ]
-#                },
                 {
                     "type" : "file",
                     "name" : "${appconfig.datadir}/config/database.yml",
                     "template"     : "tmpl/database.yml.tmpl",
                     "templatelang" : "varsubst"
                 },
-#                { <- Can this be factored out into an accessory?
-#                    "type": "file",
-#                    "name": "config/newrelic.yml",
-#                    "template": "tmpl/newrelic.yml.tmpl",
-#                    "templatelang": "varsubst"
-#                },
                 {
                     "type" : "file",
                     "name" : "${appconfig.datadir}/config/application.rb",
