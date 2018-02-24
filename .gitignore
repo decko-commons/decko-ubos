@@ -1,3 +1,5 @@
 pkg/
 src/
 .idea
+*.tar.xz
+*.zip
