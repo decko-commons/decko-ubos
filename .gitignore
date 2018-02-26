@@ -3,3 +3,5 @@ src/
 .idea
 tmp/
 log/
+*.tar.xz
+*.zip
