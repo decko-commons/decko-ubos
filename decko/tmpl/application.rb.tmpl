@@ -1,11 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'wagn/all'
+require 'decko/all'
 
-module UbosAppConfig
-  class Application < Wagn::Application
+module DeckoUbos
+  class Application < Decko::Application
 
-    # Wagn inherits Rails configuration options.  See http://guides.rubyonrails.org/configuring.html
+    # Decko inherits Rails configuration options.  See http://guides.rubyonrails.org/configuring.html
 
     config.recaptcha_public_key  = '${installable.customizationpoints.recaptcha_public_key.value}'
     config.recaptcha_private_key = '${installable.customizationpoints.recaptcha_private_key.value}'

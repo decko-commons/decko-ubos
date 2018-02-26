@@ -1,165 +1,164 @@
 {
-    "type" : "app",
+  "type" : "app",
 
-    "roles" : {
-        "apache2" : {
-            "defaultcontext" : "/deck",
-            "depends" : [
-                "imagemagick",
-                "memcached",
-                "mod_xsendfile",
-                "passenger",
-                "ruby",
-                "ruby-bundler",
-                "ruby-mysql"
-            ],
-            "apache2modules" : [
-                "passenger",
-                "expires",
-                "xsendfile",
-                "headers"
-            ],
-            "wellknown" : {
-                "robotstxt" : {
-                    "disallow" : [
-                        "/card/",
-                        "/admin/",
-                        "/account/",
-                        "/*?*"
-                    ]
-                }
-            },
-            "appconfigitems" : [
-                {
-                    "type" : "file",
-                    "name" : "${appconfig.apache2.appconfigfragmentfile}",
-                    "template"     : "tmpl/htaccess.tmpl",
-                    "templatelang" : "varsubst"
-                },
-                {
-                    "type"  : "directory",
-                    "name"  : "${appconfig.datadir}",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}"
-                },
-                {
-                    "type": "directory",
-                    "names": [
-                        "${appconfig.datadir}/config",
-                        "${appconfig.datadir}/mod"
-                    ]
-                },
-                {
-                    "type": "symlink",
-                    "source": "/usr/share/decko/$2",
-                    "name": "${appconfig.datadir}/.bundle"
-                },
-                {
-                    "type": "symlink",
-                    "source": "/usr/share/decko/web/$2",
-                    "names": [
-                        "${appconfig.datadir}/Gemfile",
-                        "${appconfig.datadir}/Rakefile",
-                        "${appconfig.datadir}/boot.rb",
-                        "${appconfig.datadir}/environment.rb",
-                        "${appconfig.datadir}/script"
-                    ]
-                },
-                {
-                    "type" : "file",
-                    "name" : "${appconfig.datadir}/config/database.yml",
-                    "template"     : "tmpl/database.yml.tmpl",
-                    "templatelang" : "varsubst"
-                },
-                {
-                    "type" : "file",
-                    "name" : "${appconfig.datadir}/config/application.rb",
-                    "template"     : "tmpl/application.rb.tmpl",
-                    "templatelang" : "varsubst"
-                },
-                {
-                    "type"  : "directory",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}",
-                    "mode"  : "0755",
-                    "name"  : "files",
-                    "retentionpolicy": "keep",
-                    "retentionbucket": "uploads"
-                },
-                {
-                    "type"  : "directory",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}",
-                    "mode"  : "0755",
-                    "name"  : "${appconfig.datadir}/tmp"
-                },
-                {
-                    "type": "file",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}",
-
-                    "source": "tmpl/$2",
-                    "names" : [
-                         "config.ru",
-                         "Gemfile.lock",
-                         "restart.txt"
-                    ]
-                }
-            ],
-            "installers" : [
-                {
-                    "type"   : "perlscript",
-                    "source" : "bin/migrate.pl"
-                }
-            ],
-            "upgraders" : [
-                {
-                    "type"   : "perlscript",
-                    "source" : "bin/migrate.pl"
-                }
-            ]
-        },
-
-        "mysql" : {
-            "appconfigitems" : [
-                {
-                    "type"       : "database",
-                    "name"       : "maindb",
-                    "retentionpolicy"  : "keep",
-                    "retentionbucket"  : "maindb",
-                    "privileges" : "create, alter, drop, index, select, insert, update, delete"
-                }
-            ],
-            "installers" : [
-                {
-                    "name"   : "maindb",
-                    "type"   : "sqlscript",
-                    "source" : "sql/bootstrap.sql"
-                }
-            ]
-        }
-    },
-    "customizationpoints" : {
-        "recaptcha_public_key" : {
-            "name"     : "ReCaptcha Public Key",
-            "type"     : "string",
-            "required" : false,
-            "default"  : {
-                "value" : ""
-            }
-        },
-        "recaptcha_private_key" : {
-            "name"     : "ReCaptcha Private Key",
-            "type"     : "string",
-            "required" : false,
-            "default"  : {
-                "value" : ""
-            }
-        },
-        "sender_email" : {
-            "name"     : "Sender e-mail address",
-            "type"     : "email",
-            "required" : true
-        }
+  "info" : {
+    "default" : {
+      "name" : "Decko",
+      "tagline" : "You hold the cards"
     }
+  },
+
+  "roles" : {
+    "apache2" : {
+      "defaultcontext" : "/deck",
+      "apache2modules" : [
+        "passenger",
+        "expires",
+        "headers",
+        "mem_cache"
+      ],
+      "wellknown" : {
+        "robotstxt" : {
+          "disallow" : [
+            "/card/*",
+            "/create/*",
+            "/update/*",
+            "/delete/*",
+            "/admin/*",
+            "/account/*",
+            "/*.json"
+          ]
+        }
+      },
+      "appconfigitems" : [
+        {
+          "type" : "file",
+          "name" : "${appconfig.apache2.appconfigfragmentfile}",
+          "template"     : "tmpl/htaccess.tmpl",
+          "templatelang" : "varsubst"
+        },
+        {
+          "type"  : "directory",
+          "name"  : "${appconfig.datadir}"
+        },
+        {
+          "type"  : "directory",
+          "name"  : "${appconfig.datadir}/.bundle"
+        },
+        {
+          "type": "directorytree",
+          "names": [
+            "${appconfig.datadir}/Gemfile",
+            "${appconfig.datadir}/Rakefile",
+            "${appconfig.datadir}/config",
+            "${appconfig.datadir}/public/files"
+          ],
+          "source"          : "/usr/share/${package.name}/$2",
+          "filepermissions" : "preserve",
+          "dirpermissions"  : "preserve"
+        },
+        {
+          "type": "directorytree",
+          "names": [
+            "${appconfig.datadir}/Gemfile.lock",
+            "${appconfig.datadir}/config.ru"
+          ],
+          "uname" : "${apache2.uname}",
+          "gname" : "${apache2.gname}",
+          "source"          : "/usr/share/${package.name}/$2",
+          "filepermissions" : "preserve",
+          "dirpermissions"  : "preserve"
+        },
+        {
+          "type" : "file",
+          "name" : "${appconfig.datadir}/.bundle/config",
+          "template"     : "tmpl/bundle_config.tmpl",
+          "templatelang" : "varsubst"
+        },
+        {
+          "type" : "file",
+          "name" : "${appconfig.datadir}/config/database.yml",
+          "template"     : "tmpl/database.yml.tmpl",
+          "templatelang" : "varsubst"
+        },
+        {
+          "type" : "file",
+          "name" : "${appconfig.datadir}/config/application.rb",
+          "template"     : "tmpl/application.rb.tmpl",
+          "templatelang" : "varsubst"
+        },
+        {
+          "type"  : "directory",
+          "uname" : "${apache2.uname}",
+          "gname" : "${apache2.gname}",
+          "mode"  : "0755",
+          "name"  : "files",
+          "retentionpolicy": "keep",
+          "retentionbucket": "uploads"
+        },
+        {
+          "type"  : "directory",
+          "uname" : "${apache2.uname}",
+          "gname" : "${apache2.gname}",
+          "mode"  : "0755",
+          "name"  : "${appconfig.datadir}/tmp"
+        },
+        {
+          "type": "file",
+          "uname" : "${apache2.uname}",
+          "gname" : "${apache2.gname}",
+          "source": "tmpl/$2",
+          "name" : "restart.txt"
+        }
+      ],
+      "installers" : [
+        {
+          "type"   : "perlscript",
+          "source" : "/usr/share/${package.name}/ubos_cards.pl"
+        }
+      ],
+      "upgraders" : [
+        {
+          "type"   : "perlscript",
+          "source" : "/usr/share/${package.name}/ubos_cards.pl"
+        }
+      ]
+    },
+
+    "mysql" : {
+      "appconfigitems": [
+        {
+          "type": "database",
+          "name": "maindb",
+          "retentionpolicy": "keep",
+          "retentionbucket": "maindb",
+          "privileges": "create, alter, drop, index, select, insert, update, delete"
+        }
+      ]
+    }
+  },
+
+  "customizationpoints" : {
+    "recaptcha_public_key" : {
+      "name"     : "ReCaptcha Public Key",
+      "type"     : "string",
+      "required" : false,
+      "default"  : {
+        "value" : ""
+      }
+    },
+    "recaptcha_private_key" : {
+      "name"     : "ReCaptcha Private Key",
+      "type"     : "string",
+      "required" : false,
+      "default"  : {
+        "value" : ""
+      }
+    },
+    "sender_email" : {
+      "name"     : "Sender e-mail address",
+      "type"     : "email",
+      "required" : true
+    }
+  }
 }

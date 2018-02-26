@@ -1,17 +1,22 @@
 developer=http://grasscommons.org/
 url=http://wagn.org/
-maintainer=$developer
+maintainer=${developer}
 pkgname=decko
-pkgver=0.3.4
+pkgver=0.3.11
 pkgrel=1
 pkgdesc="A wiki approach to stuctured data, dynamic interaction, and web design"
 arch=('any')
 license=("GPL")
 # source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
-    'nodejs'
+    'ruby'
+    'ruby-bundler'
     'mod_passenger'
-    'ubos-rails-support'
+    'mariadb-clients'
+    'imagemagick'
+    'nodejs'
+    'memcached'
+
 )
 #
 # 'smtp-server'
@@ -20,8 +25,8 @@ depends=(
 
 build() {
     cd ${startdir}
-    RAILS_ENV=production bin/bundle install --deployment --without development test
-    RAILS_ENV=production bin/bundle exec decko update
+    bundle install --path gems --deployment --without development test
+    bundle exec decko seed
 }
 
 package() {
@@ -49,30 +54,16 @@ package() {
     mkdir -p ${pkgdir}/usr/share/${pkgname}/
     toCopy=(
         '.bundle'
-        'app'
-        'bin'
-        'config/environments/production.rb'
-        'config/initializers'
-        'config/locales'
-        'config/application.rb'
-        'config/boot.rb'
-        'config/cable.yml'
-        'config/environment.rb'
-        'config/routes.rb'
-        'config/secrets.yml'
-        'config/secrets.yml.key'
-        'config/spring.rb'
-        'db/migrate'
-        'db/schema.rb'
-        'db/seeds.rb'
-        'lib'
-        'public/assets'
-        'tmpl'
-        'vendor'
-        'config.ru'
         'Gemfile'
         'Gemfile.lock'
         'Rakefile'
+        'config.ru'
+        'config/boot.rb'
+        'config/environment.rb'
+        'config/routes.rb'
+        'public/files'
+        'gems'
+        'ubos_cards.pl'
     )
     for t in ${toCopy[@]}; do
         from="${startdir}/${t}"
@@ -82,17 +73,14 @@ package() {
             [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
             cp -a ${from} ${todir}/
         fi
-     done
-
-#    mkdir -p ${pkgdir}/usr/share/${pkgname}/web
-#    cp -r -p ${startdir}/web/* ${pkgdir}/usr/share/${pkgname}/web/
-#    mkdir -p ${pkgdir}/usr/share/${pkgname}/bin
-#    install -m755 ${startdir}/bin/* ${pkgdir}/usr/share/${pkgname}/bin/
+    done
 
 # Logging
     mkdir -p -m755 ${pkgdir}/var/log/${pkgname}
 
-# Gems
-#    rsync -a --exclude 'cache/' ${srcdir}/.bundle ${pkgdir}/usr/share/${pkgname}/
+# License
+    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
+    install -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
+
 }
 
