@@ -16,8 +16,9 @@ depends=(
     'imagemagick'
     'nodejs'
     'memcached'
-
 )
+
+
 #
 # 'smtp-server'
 #options=('!strip')
@@ -56,6 +57,7 @@ package() {
         'gems'
         'ubos_cards.pl'
         'ubos_logging.pl'
+        'tmpl'
     )
     for t in ${toCopy[@]}; do
         from="${startdir}/${t}"
