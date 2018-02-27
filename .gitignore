@@ -6,3 +6,4 @@ log/
 gems/
 *.tar.xz
 *.zip
+ruby/

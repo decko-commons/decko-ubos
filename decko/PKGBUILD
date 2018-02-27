@@ -55,6 +55,7 @@ package() {
         'public/files'
         'gems'
         'ubos_cards.pl'
+        'ubos_logging.pl'
     )
     for t in ${toCopy[@]}; do
         from="${startdir}/${t}"
