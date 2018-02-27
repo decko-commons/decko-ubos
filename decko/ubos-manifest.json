@@ -42,12 +42,9 @@
           "name"  : "${appconfig.datadir}"
         },
         {
-          "type"  : "directory",
-          "name"  : "${appconfig.datadir}/.bundle"
-        },
-        {
           "type": "directorytree",
           "names": [
+            "${appconfig.datadir}/.bundle",
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
