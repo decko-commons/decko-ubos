@@ -62,9 +62,7 @@
           ],
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
-          "source"          : "/usr/share/${package.name}/$2",
-          "filepermissions" : "preserve",
-          "dirpermissions"  : "preserve"
+          "source"          : "/usr/share/${package.name}/$2"
         },
         {
           "type" : "file",
