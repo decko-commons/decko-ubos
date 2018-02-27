@@ -1,4 +1,2 @@
 ---
-BUNDLE_FROZEN: "true"
-BUNDLE_PATH: "gems"
 BUNDLE_WITHOUT: "development:test"

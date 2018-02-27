@@ -14,7 +14,8 @@
       "apache2modules" : [
         "passenger",
         "expires",
-        "headers"
+        "headers",
+        "xsendfile"
       ],
       "wellknown" : {
         "robotstxt" : {
