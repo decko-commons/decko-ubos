@@ -112,13 +112,13 @@
       "installers" : [
         {
           "type"   : "perlscript",
-          "source" : "/usr/share/${package.name}/ubos_cards.pl"
+          "source" : "/usr/share/decko/ubos_cards.pl"
         }
       ],
       "upgraders" : [
         {
           "type"   : "perlscript",
-          "source" : "/usr/share/${package.name}/ubos_cards.pl"
+          "source" : "/usr/share/decko/ubos_cards.pl"
         }
       ]
     },
