@@ -26,7 +26,6 @@ depends=(
 build() {
     cd ${startdir}
     bundle install --path gems --deployment --without development test
-    bundle exec decko seed
 }
 
 package() {
