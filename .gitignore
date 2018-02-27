@@ -4,6 +4,7 @@ src/
 tmp/
 log/
 gems/
+*.tar
 *.tar.xz
 *.zip
 ruby/

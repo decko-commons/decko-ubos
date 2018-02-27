@@ -14,8 +14,7 @@
       "apache2modules" : [
         "passenger",
         "expires",
-        "headers",
-        "mem_cache"
+        "headers"
       ],
       "wellknown" : {
         "robotstxt" : {
@@ -72,7 +71,12 @@
         },
         {
           "type"         : "perlscript",
-          "source"       : "/usr/share/${package.name}/ubos_logging.pl"
+          "source"       : "/usr/share/decko/ubos_logging.pl"
+        },
+        {
+          "type"         : "symlink",
+          "name"         : "${appconfig.datadir}/gems",
+          "source"       : "/usr/share/${package.name}/gems"
         },
         {
           "type"         : "symlink",
