@@ -48,7 +48,7 @@
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
-            "${appconfig.datadir}/public/files"
+            "${appconfig.datadir}/public"
           ],
           "source"          : "/usr/share/${package.name}/$2",
           "filepermissions" : "preserve",
@@ -63,12 +63,6 @@
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
           "source"          : "/usr/share/${package.name}/$2"
-        },
-        {
-          "type" : "file",
-          "name" : "${appconfig.datadir}/.bundle/config",
-          "template"     : "tmpl/bundle_config.tmpl",
-          "templatelang" : "varsubst"
         },
         {
           "type" : "file",
