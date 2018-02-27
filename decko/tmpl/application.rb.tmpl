@@ -43,7 +43,7 @@ module DeckoUbos
       'X-Frame-Options' => 'ALLOWALL'
     }
 
-    config.paths['log'] = "/var/log/decko/${site.hostname}-${appconfig.appconfigid}.log"
+    config.paths['log'] = "/var/log/${package.name}/${appconfig.appconfigid}.log"
 
     config.action_mailer.smtp_settings = { :address => 'localhost' }
 

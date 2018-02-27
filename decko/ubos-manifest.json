@@ -82,6 +82,15 @@
           "templatelang" : "varsubst"
         },
         {
+          "type"         : "perlscript",
+          "source"       : "/usr/share/${package.name}/ubos_logging.pl"
+        },
+        {
+          "type"         : "symlink",
+          "name"         : "${appconfig.datadir}/log",
+          "source"       : "/var/log/${package.name}/${appconfig.appconfigid}"
+        },
+        {
           "type" : "file",
           "name" : "${appconfig.datadir}/config/application.rb",
           "template"     : "tmpl/application.rb.tmpl",

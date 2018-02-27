@@ -41,14 +41,6 @@ package() {
 # Data directory
     mkdir -p ${pkgdir}/var/lib/${pkgname}
 
-# Templates
-#    mkdir -p ${pkgdir}/usr/share/${pkgname}/tmpl
-#    cp ${startdir}/tmpl/* ${pkgdir}/usr/share/${pkgname}/tmpl/
-
-# Initial SQL
-#    mkdir -p ${pkgdir}/usr/share/${pkgname}/sql
-#    cp ${startdir}/sql/bootstrap.sql ${pkgdir}/usr/share/${pkgname}/sql/
-
 # Code
 # Code -- be selective in what we package
     mkdir -p ${pkgdir}/usr/share/${pkgname}/
@@ -81,6 +73,4 @@ package() {
 # License
     mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
     install -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
-
 }
-
