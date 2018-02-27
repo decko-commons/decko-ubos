@@ -1,10 +1,24 @@
 {
-   "siteid" : "sda39a3ee5e6b4b0d3255bfef95601890afd80709",
+   "siteid" : "s1f4bc2df9e179851eb7e1febf257a688385ee06d",
+   "appconfigs" : [
+      {
+         "context" : "/deck",
+         "appid" : "decko",
+         "appconfigid" : "abf0ea8b0ec76bdbdfa5937393cd7f6e6db87c583",
+         "customizationpoints" : {
+            "decko" : {
+               "sender_email" : {
+                  "value" : "ubos@decko.org"
+               }
+            }
+         }
+      }
+   ],
+   "hostname" : "*",
    "admin" : {
-      "email" : "ubos@decko.org",
       "userid" : "admin",
-      "credential" : "supersafepassword",
-      "username" : "Joe Admin"
-   },
-   "hostname" : "*"
+      "credential" : "t0t8llykuhlpw",
+      "username" : "Joe Admin",
+      "email" : "ubos@decko.org"
+   }
 }
