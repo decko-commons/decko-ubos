@@ -48,6 +48,8 @@
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
+            "${appconfig.datadir}/script",
+            "${appconfig.datadir}/gems",
             "${appconfig.datadir}/public"
           ],
           "source"          : "/usr/share/${package.name}/$2",
@@ -73,11 +75,6 @@
         {
           "type"         : "perlscript",
           "source"       : "/usr/share/decko/ubos_logging.pl"
-        },
-        {
-          "type"         : "symlink",
-          "name"         : "${appconfig.datadir}/gems",
-          "source"       : "/usr/share/${package.name}/gems"
         },
         {
           "type"         : "symlink",
