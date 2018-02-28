@@ -58,7 +58,6 @@ package() {
         'script'
         'gems'
         'ubos_cards.pl'
-        'ubos_logging.pl'
         'tmpl'
     )
     for t in ${toCopy[@]}; do

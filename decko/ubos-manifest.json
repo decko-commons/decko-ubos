@@ -73,10 +73,6 @@
           "templatelang" : "varsubst"
         },
         {
-          "type"         : "perlscript",
-          "source"       : "/usr/share/decko/ubos_logging.pl"
-        },
-        {
           "type"         : "symlink",
           "name"         : "${appconfig.datadir}/log",
           "source"       : "/var/log/${package.name}/${appconfig.appconfigid}"
