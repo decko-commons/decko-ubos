@@ -92,7 +92,7 @@
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
-          "name"  : "files",
+          "name"  : "${appconfig.datadir}/files",
           "retentionpolicy": "keep",
           "retentionbucket": "uploads"
         },
