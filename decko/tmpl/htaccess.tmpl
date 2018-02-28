@@ -11,7 +11,7 @@ SetEnv UUID_STATE_FILE off
 PassengerAppRoot ${appconfig.datadir}
 
 # relative root for the app; sets Rails env var RAILS_RELATIVE_URL_ROOT
-RackBaseURI ${appconfig.contextorslash}
+PassengerBaseURI ${appconfig.contextorslash}
 
 # turn off passenger error pages with traces
 PassengerFriendlyErrorPages off

@@ -47,7 +47,7 @@ module DeckoUbos
 
     config.action_mailer.smtp_settings = { :address => 'localhost' }
   
-    config.relative_root_url = "/deck"
+    config.relative_root_url = "${appconfig.contextorslash}"
   end
 end
 
