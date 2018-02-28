@@ -108,7 +108,7 @@
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
           "source": "tmpl/$2",
-          "name" : "restart.txt"
+          "name" : "${appconfig.datadir}/tmp/restart.txt"
         }
       ],
       "installers" : [

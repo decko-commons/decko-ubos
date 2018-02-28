@@ -55,7 +55,7 @@ package() {
         'config/environment.rb'
         'config/routes.rb'
         'public/files'
-	'script'
+        'script'
         'gems'
         'ubos_cards.pl'
         'ubos_logging.pl'
