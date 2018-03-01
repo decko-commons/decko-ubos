@@ -42,15 +42,24 @@
           "name"  : "${appconfig.datadir}"
         },
         {
+          "type"  : "directorytree",
+          "name"  : "files",
+          "source"  : "public/files"
+        },
+        {
+          "type"  : "symlink",
+          "name"  : "assets",
+          "source"  : "${appconfig.datadir}/public/assets"
+        },
+        {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/.bundle",
+            "${appconfig.datadir}/.bundle/ruby",
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
             "${appconfig.datadir}/script",
-            "${appconfig.datadir}/gems",
-            "${appconfig.datadir}/public"
+            "${appconfig.datadir}/gems"
           ],
           "source"          : "/usr/share/${package.name}/$2",
           "filepermissions" : "preserve",
@@ -67,21 +76,26 @@
           "source"          : "/usr/share/${package.name}/$2"
         },
         {
-          "type" : "file",
-          "name" : "${appconfig.datadir}/config/database.yml",
+          "type"  : "file",
+          "name"  : "${appconfig.datadir}/config/database.yml",
           "template"     : "tmpl/database.yml.tmpl",
           "templatelang" : "varsubst"
         },
         {
-          "type"         : "symlink",
-          "name"         : "${appconfig.datadir}/log",
-          "source"       : "/var/log/${package.name}/${appconfig.appconfigid}"
+          "type"  : "file",
+          "name"  : "${appconfig.datadir}/config/application.rb",
+          "template"      : "tmpl/application.rb.tmpl",
+          "templatelang"  : "varsubst"
         },
         {
           "type" : "file",
-          "name" : "${appconfig.datadir}/config/application.rb",
-          "template"     : "tmpl/application.rb.tmpl",
-          "templatelang" : "varsubst"
+          "name" : "${appconfig.datadir}/.bundle/config",
+          "source"     : "tmpl/bundle_config"
+        },
+        {
+          "type"  : "symlink",
+          "name"  : "${appconfig.datadir}/log",
+          "source"  : "/var/log/${package.name}/${appconfig.appconfigid}"
         },
         {
           "type"  : "directory",
@@ -100,23 +114,23 @@
           "name"  : "${appconfig.datadir}/tmp"
         },
         {
-          "type": "file",
+          "type"  : "file",
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
-          "source": "tmpl/$2",
-          "name" : "${appconfig.datadir}/tmp/restart.txt"
+          "source"  : "tmpl/$2",
+          "name"  : "${appconfig.datadir}/tmp/restart.txt"
         }
       ],
       "installers" : [
         {
-          "type"   : "perlscript",
-          "source" : "/usr/share/decko/ubos_cards.pl"
+          "type"  : "perlscript",
+          "source"  : "/usr/share/decko/ubos_cards.pl"
         }
       ],
       "upgraders" : [
         {
-          "type"   : "perlscript",
-          "source" : "/usr/share/decko/ubos_cards.pl"
+          "type"  : "perlscript",
+          "source"  : "/usr/share/decko/ubos_cards.pl"
         }
       ]
     },

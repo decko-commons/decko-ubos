@@ -19,7 +19,8 @@ module DeckoUbos
 
     config.paths['log'] = "/var/log/${package.name}/${appconfig.appconfigid}/production.log"
 
-    config.action_mailer.smtp_settings = { :address => 'localhost' }
+    # config.action_mailer.smtp_settings = { :address => 'localhost' }
+
     config.email_defaults = { :from => '${installable.customizationpoints.sender_email.value}' }
   
     # config.relative_root_url = "${appconfig.contextorslash}"
