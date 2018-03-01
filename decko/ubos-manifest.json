@@ -155,8 +155,7 @@
     },
     "sender_email" : {
       "name"     : "Sender e-mail address",
-      "type"     : "email",
-      "required" : true
+      "type"     : "email"
     }
   }
 }
