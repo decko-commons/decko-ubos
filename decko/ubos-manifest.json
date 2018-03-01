@@ -47,18 +47,14 @@
           "source"  : "public/files"
         },
         {
-          "type"  : "symlink",
-          "name"  : "assets",
-          "source"  : "${appconfig.datadir}/public/assets"
-        },
-        {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/.bundle/ruby",
+            "${appconfig.datadir}/.bundle",
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
             "${appconfig.datadir}/script",
+            "${appconfig.datadir}/public",
             "${appconfig.datadir}/gems"
           ],
           "source"          : "/usr/share/${package.name}/$2",
@@ -88,11 +84,6 @@
           "templatelang"  : "varsubst"
         },
         {
-          "type" : "file",
-          "name" : "${appconfig.datadir}/.bundle/config",
-          "source"     : "tmpl/bundle_config"
-        },
-        {
           "type"  : "symlink",
           "name"  : "${appconfig.datadir}/log",
           "source"  : "/var/log/${package.name}/${appconfig.appconfigid}"
@@ -112,13 +103,6 @@
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
           "name"  : "${appconfig.datadir}/tmp"
-        },
-        {
-          "type"  : "file",
-          "uname" : "${apache2.uname}",
-          "gname" : "${apache2.gname}",
-          "source"  : "tmpl/$2",
-          "name"  : "${appconfig.datadir}/tmp/restart.txt"
         }
       ],
       "installers" : [
