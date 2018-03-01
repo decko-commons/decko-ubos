@@ -21,9 +21,9 @@ module DeckoUbos
 
     # config.action_mailer.smtp_settings = { :address => 'localhost' }
 
-    config.email_defaults = { :from => '${installable.customizationpoints.sender_email.value}' }
+    # config.email_defaults = { :from => '$ {installable.customizationpoints.sender_email.value}' }
   
-    # config.relative_root_url = "${appconfig.contextorslash}"
+    # config.relative_root_url = "$ {appconfig.contextorslash}"
   end
 end
 

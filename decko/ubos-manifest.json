@@ -152,10 +152,6 @@
       "default"  : {
         "value" : ""
       }
-    },
-    "sender_email" : {
-      "name"     : "Sender e-mail address",
-      "type"     : "email"
     }
   }
 }
