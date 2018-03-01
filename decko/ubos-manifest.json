@@ -103,6 +103,10 @@
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
           "name"  : "${appconfig.datadir}/tmp"
+        },
+        {
+          "type"  : "systemd-service",
+          "name"  : "memcached"
         }
       ],
       "installers" : [
