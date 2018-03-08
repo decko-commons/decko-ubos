@@ -129,7 +129,7 @@
           "type": "database",
           "name": "maindb",
           "retentionpolicy": "keep",
-          "retentionbucket": "maindb",
+          "retentionbucket": "db",
           "privileges": "create, alter, drop, index, select, insert, update, delete"
         }
       ]
