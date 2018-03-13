@@ -105,6 +105,10 @@
           "name"  : "${appconfig.datadir}/tmp"
         },
         {
+          "type"  : "perlscript",
+          "source" : "/usr/share/decko/ubos_logging.pl"
+        },
+        {
           "type"  : "systemd-service",
           "name"  : "memcached"
         }

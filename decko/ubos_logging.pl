@@ -1,4 +1,3 @@
-
 #!/usr/bin/perl
 #
 # Sets up the directory / file structure for logging from a Rails app
