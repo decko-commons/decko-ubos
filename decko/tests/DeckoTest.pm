@@ -28,7 +28,7 @@ my $TEST = new UBOS::WebAppTest(
                     check => sub {
                         my $c = shift;
 
-                        $c->getMustContain(    '/', '', undef, 'Wrong front page' );
+                        $c->getMustContain(    '/', 'Welcome, Decker!', undef, 'Wrong front page' );
 
                         return 1;
                     }
