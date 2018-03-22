@@ -23,8 +23,8 @@ if ($operation eq 'install') {
 if ($command) {
     my $out;
     my $full_command = "cd $datadir; sudo -u http bundle exec $command";
-    if( UBOS::Utils::myexec( $full_command, undef, \$out, \$out )) {
-        error( "$command failed:", $out );
+    if( UBOS::Utils::myexec( $full_command )) {
+        error( "$full_command failed" );
     }
 }
 

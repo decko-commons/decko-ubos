@@ -2,8 +2,8 @@ developer=http://grasscommons.org/
 url=http://wagn.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.3.12
-pkgrel=2
+pkgver=0.4.0
+pkgrel=1
 pkgdesc="A wiki approach to stuctured data and web design"
 arch=('any')
 license=("GPL")
@@ -19,8 +19,6 @@ depends=(
     'mod_xsendfile'
 )
 
-
-#
 # 'smtp-server'
 #options=('!strip')
 #sha512sums=('45e4f8682a5e88ef45d658844c1c051468b89204a9e297d967fbde41cee2befb9cd57f69dd3c282820509050af5e5fff7a7fc83205d89ed93e60feaf8c08b596')
