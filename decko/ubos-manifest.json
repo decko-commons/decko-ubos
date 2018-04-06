@@ -57,7 +57,7 @@
             "${appconfig.datadir}/public",
             "${appconfig.datadir}/gems"
           ],
-          "source"          : "/usr/share/${package.name}/$2",
+          "source"          : "/ubos/share/${package.name}/$2",
           "filepermissions" : "preserve",
           "dirpermissions"  : "preserve"
         },
@@ -67,25 +67,25 @@
             "${appconfig.datadir}/Gemfile.lock",
             "${appconfig.datadir}/config.ru"
           ],
-          "uname" : "${apache2.uname}",
-          "gname" : "${apache2.gname}",
-          "source"          : "/usr/share/${package.name}/$2"
+          "uname"  : "${apache2.uname}",
+          "gname"  : "${apache2.gname}",
+          "source" : "/ubos/share/${package.name}/$2"
         },
         {
-          "type"  : "file",
-          "name"  : "${appconfig.datadir}/config/database.yml",
+          "type"         : "file",
+          "name"         : "${appconfig.datadir}/config/database.yml",
           "template"     : "tmpl/database.yml.tmpl",
           "templatelang" : "varsubst"
         },
         {
-          "type"  : "file",
-          "name"  : "${appconfig.datadir}/config/application.rb",
+          "type"          : "file",
+          "name"          : "${appconfig.datadir}/config/application.rb",
           "template"      : "tmpl/application.rb.tmpl",
           "templatelang"  : "varsubst"
         },
         {
-          "type"  : "symlink",
-          "name"  : "${appconfig.datadir}/log",
+          "type"    : "symlink",
+          "name"    : "${appconfig.datadir}/log",
           "source"  : "/var/log/${package.name}/${appconfig.appconfigid}"
         },
         {
@@ -112,13 +112,13 @@
       "installers" : [
         {
           "type"  : "perlscript",
-          "source"  : "/usr/share/decko/ubos_cards.pl"
+          "source"  : "/ubos/share/decko/ubos_cards.pl"
         }
       ],
       "upgraders" : [
         {
           "type"  : "perlscript",
-          "source"  : "/usr/share/decko/ubos_cards.pl"
+          "source"  : "/ubos/share/decko/ubos_cards.pl"
         }
       ]
     },
