@@ -3,7 +3,7 @@ url="http://ubos.net/"
 maintainer=$developer
 pkgname=$(basename $(pwd))
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="New Relic plugin for Decko"
 arch=('any')
 license=("GPL")
@@ -11,10 +11,8 @@ options=('!strip')
 
 package() {
 # Manifest
-    mkdir -p $pkgdir/var/lib/ubos/manifests
-    install -m0644 $startdir/ubos-manifest.json $pkgdir/var/lib/ubos/manifests/${pkgname}.json
+    install -D -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/ubos/lib/ubos/manifests/${pkgname}.json
 
 # Source
-    mkdir -p $pkgdir/usr/share/${pkgname}/tmpl
-    install -m644 $startdir/tmpl/* $pkgdir/usr/share/${pkgname}/tmpl/
+    install -D -m0644 ${startdir}/tmpl/* -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
 }
