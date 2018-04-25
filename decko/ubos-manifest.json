@@ -106,7 +106,7 @@
         },
         {
           "type"  : "perlscript",
-          "source" : "/usr/share/decko/ubos_logging.pl"
+          "source" : "/ubos/share/decko/ubos_logging.pl"
         },
         {
           "type"  : "systemd-service",
