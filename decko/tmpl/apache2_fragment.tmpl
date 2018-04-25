@@ -1,6 +1,8 @@
 
-
-Alias ${appconfig.contextorslash} ${appconfig.datadir}/public
+# note: passenger docs suggest this alias should be used for relative roots.
+# but it was breaking non-relative roots, and relative roots seem to work
+# fine without it.
+# Alias ${appconfig.contextorslash} ${appconfig.datadir}/public
 <Location ${appconfig.contextorslash}>
     # relative root for the app; sets Rails env var RAILS_RELATIVE_URL_ROOT
     PassengerBaseURI ${appconfig.contextorslash}
