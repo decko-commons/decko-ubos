@@ -28,4 +28,4 @@ if ($command) {
     }
 }
 
-1;
+exit(1);
