@@ -34,7 +34,7 @@
         {
           "type" : "file",
           "name" : "${appconfig.apache2.appconfigfragmentfile}",
-          "template"     : "tmpl/htaccess.tmpl",
+          "template"     : "tmpl/apache2_fragment.tmpl",
           "templatelang" : "varsubst"
         },
         {

@@ -1,0 +1,29 @@
+
+
+Alias ${appconfig.contextorslash} ${appconfig.datadir}/public
+<Location ${appconfig.contextorslash}>
+    # relative root for the app; sets Rails env var RAILS_RELATIVE_URL_ROOT
+    PassengerBaseURI ${appconfig.contextorslash}
+
+    # Deck dir
+    PassengerAppRoot ${appconfig.datadir}
+
+    # for uuid gem. variable is used in a custom initializer in decko (uuid_state_file.rb)
+    SetEnv UUID_STATE_FILE off
+
+    # turn off passenger error pages with traces
+    PassengerFriendlyErrorPages off
+
+</Location>
+<Directory ${appconfig.datadir}/public>
+
+    # MultiViews not compatible with Passenger
+    Options -MultiViews
+
+    # we make heavy use of symlinks.  this is important
+    Options +FollowSymLinks
+
+    Require all granted
+</Directory>
+
+
