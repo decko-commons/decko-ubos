@@ -102,7 +102,10 @@
           "uname" : "${apache2.uname}",
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
-          "name"  : "${appconfig.datadir}/tmp"
+          "names" : [
+            "${appconfig.datadir}/tmp",
+            "${appconfig.datadir}/public"
+          ]
         },
         {
           "type"  : "perlscript",
