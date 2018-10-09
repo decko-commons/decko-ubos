@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc="A wiki approach to stuctured data and web design"
 arch=('any')
 license=("GPL")
-# source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
+source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
     'ruby'
     'ruby-bundler'
@@ -17,11 +17,11 @@ depends=(
     'nodejs'
     'memcached'
     'mod_xsendfile'
+    'smtp-server'
 )
 
-# 'smtp-server'
-#options=('!strip')
-#sha512sums=('45e4f8682a5e88ef45d658844c1c051468b89204a9e297d967fbde41cee2befb9cd57f69dd3c282820509050af5e5fff7a7fc83205d89ed93e60feaf8c08b596')
+options=('!strip')
+sha512sums=('b1cea895f65af4d836c4c291d9811d5c098ab1c041d3022d03baf6e796a8d85ad30f7f65900eeef3ad018b95e63f3b57dfdc72497ba60624178364d8403d67a3')
 
 build() {
     cd ${startdir}
