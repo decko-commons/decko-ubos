@@ -24,8 +24,9 @@ options=('!strip')
 sha512sums=('4d559f529ef47fab47077c15509d81cf656f9587f8e04ec542d0cb390714edb574c408161eadf74df90056a8edc2dcb432217422824dc47b4bb146f3751d5dcc')
 
 build() {
-    cd ${startdir}
-    bundle install --path gems --without development test
+    cd ${srcdir}/decko-${pkgver}
+    cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+    HOME=$(pwd) bundle install --path gems --without development test
 }
 
 package() {
@@ -40,6 +41,22 @@ package() {
 
 # Code -- be selective in what we package
     mkdir -p ${pkgdir}/ubos/share/${pkgname}/
+
+# From $startdir
+    toCopy=(
+        'ubos_cards.pl'
+        'ubos_logging.pl'
+        'tmpl'
+    )
+    for t in ${toCopy[@]}; do
+        from="${startdir}/${t}"
+        to="${pkgdir}/ubos/share/${pkgname}/${t}"
+        todir=$(dirname $to)
+        [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
+        cp -a ${from} ${todir}/
+    done
+
+# From $srcdir:
     toCopy=(
         '.bundle'
         'Gemfile'
@@ -50,20 +67,16 @@ package() {
         'config/environment.rb'
         'config/routes.rb'
         'public/files'
-        'script'
         'gems'
-        'ubos_cards.pl'
-        'ubos_logging.pl'
-        'tmpl'
+        'script'
     )
+
     for t in ${toCopy[@]}; do
-        from="${startdir}/${t}"
-        if [[ -e ${from} ]]; then
-            to="${pkgdir}/ubos/share/${pkgname}/${t}"
-            todir=$(dirname $to)
-            [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
-            cp -a ${from} ${todir}/
-        fi
+        from="${srcdir}/decko-${pkgver}/${t}"
+        to="${pkgdir}/ubos/share/${pkgname}/${t}"
+        todir=$(dirname $to)
+        [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
+        cp -a ${from} ${todir}/
     done
 
 # Logging
