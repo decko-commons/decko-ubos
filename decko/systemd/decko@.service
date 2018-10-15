@@ -1,0 +1,11 @@
+[Unit]
+Description=Decko dependency on memcached.service
+Requires=memcached.service
+
+[Service]
+# Dummy, for dependency management only
+Type=oneshot
+ExecStart=/bin/true
+
+[Install]
+WantedBy=multi-user.target

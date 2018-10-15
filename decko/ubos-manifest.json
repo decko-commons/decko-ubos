@@ -126,7 +126,7 @@
         },
         {
           "type"  : "systemd-service",
-          "name"  : "memcached"
+          "name"  : "decko@${appconfig.appconfigid}"
         }
       ],
       "installers" : [
