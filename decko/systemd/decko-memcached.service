@@ -1,0 +1,20 @@
+# compare: memcached.service plus go-away when not needed
+
+[Unit]
+Description=Memcached Daemon for Decko
+After=network.target
+StopWhenUnneeded=true
+
+[Service]
+User=memcached
+# Remove '-l 127.0.0.1' to listen on all addresses
+ExecStart=/usr/bin/memcached -l 127.0.0.1 -o modern
+Restart=always
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=full
+MemoryDenyWriteExecute=yes
+
+[Install]
+WantedBy=multi-user.target
+
