@@ -8,7 +8,7 @@ StopWhenUnneeded=true
 [Service]
 User=memcached
 # Remove '-l 127.0.0.1' to listen on all addresses
-ExecStart=/usr/bin/memcached -l 127.0.0.1 -o modern
+ExecStart=/usr/bin/memcached -l 127.0.0.1 -p 6001 -o modern
 Restart=always
 PrivateTmp=yes
 PrivateDevices=yes
