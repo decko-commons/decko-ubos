@@ -23,9 +23,15 @@ if ($operation eq 'install') {
 if ($command) {
     my $out;
     my $full_command = "cd $datadir; sudo -u http bundle exec $command";
-    if( UBOS::Utils::myexec( $full_command )) {
-        error( "$full_command failed" );
+    if( UBOS::Utils::myexec( $full_command, undef, \$out, \$out )) {
+        # This will complain that it cannot write to ~http (/srv/http)
+        # for the .bundle directory. Instead it will create a temporary
+        # directory. As bundler does not make this setting configurable,
+        # that's the best we can do, see also
+        # https://github.com/bundler/bundler/blob/477115c0699c89a940171c4911dbc2b060054f84/lib/bundler.rb#L172
+        error( "$full_command failed: ", $out );
     }
 }
 
-exit(1);
+1;
+

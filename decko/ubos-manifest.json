@@ -47,6 +47,12 @@
           "source"  : "public/files"
         },
         {
+          "type"   : "directory",
+          "name"   : "${appconfig.datadir}/public",
+          "uname"  : "${apache2.uname}",
+          "gname"  : "${apache2.gname}"
+        },
+        {
           "type": "directorytree",
           "names": [
             "${appconfig.datadir}/.bundle",
@@ -54,10 +60,18 @@
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
             "${appconfig.datadir}/script",
-            "${appconfig.datadir}/public",
             "${appconfig.datadir}/gems"
           ],
           "source"          : "/ubos/share/${package.name}/$2",
+          "filepermissions" : "preserve",
+          "dirpermissions"  : "preserve"
+        },
+        {
+          "type": "directorytree",
+          "names": [
+            "${appconfig.datadir}/public/files"
+          ],
+          "source"          : "/ubos/share/${package.name}/public/files",
           "filepermissions" : "preserve",
           "dirpermissions"  : "preserve"
         },
@@ -103,8 +117,7 @@
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
           "names" : [
-            "${appconfig.datadir}/tmp",
-            "${appconfig.datadir}/public"
+            "${appconfig.datadir}/tmp"
           ]
         },
         {
@@ -113,7 +126,7 @@
         },
         {
           "type"  : "systemd-service",
-          "name"  : "memcached"
+          "name"  : "decko@${appconfig.appconfigid}"
         }
       ],
       "installers" : [
