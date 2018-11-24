@@ -72,6 +72,8 @@
             "${appconfig.datadir}/public/files"
           ],
           "source"          : "/ubos/share/${package.name}/public/files",
+          "uname"           : "${apache2.uname}",
+          "gname"           : "${apache2.gname}",
           "filepermissions" : "preserve",
           "dirpermissions"  : "preserve"
         },
@@ -101,6 +103,11 @@
           "type"    : "symlink",
           "name"    : "${appconfig.datadir}/log",
           "source"  : "/var/log/${package.name}/${appconfig.appconfigid}"
+        },
+        {
+          "type"    : "symlink",
+          "name"    : "${appconfig.apache2.dir}/files",
+          "source"  : "${appconfig.datadir}/public/files"
         },
         {
           "type"  : "directory",
