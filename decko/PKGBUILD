@@ -21,7 +21,7 @@ depends=(
 )
 
 options=('!strip')
-sha512sums=('4d559f529ef47fab47077c15509d81cf656f9587f8e04ec542d0cb390714edb574c408161eadf74df90056a8edc2dcb432217422824dc47b4bb146f3751d5dcc')
+sha512sums=('d1deec33c0bb591e574580d3f88febcd9ee8319658367c218427a5b6b46bb0edc4c5e174da545f13cead79311d2f3e9fb3e71992a75858f7e1eeb506e820fbd2')
 
 build() {
     cd ${srcdir}/decko-${pkgver}
