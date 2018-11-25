@@ -42,11 +42,6 @@
           "name"  : "${appconfig.datadir}"
         },
         {
-          "type"  : "directorytree",
-          "name"  : "files",
-          "source"  : "public/files"
-        },
-        {
           "type"   : "directory",
           "name"   : "${appconfig.datadir}/public",
           "uname"  : "${apache2.uname}",
@@ -108,6 +103,11 @@
           "type"    : "symlink",
           "name"    : "${appconfig.apache2.dir}/files",
           "source"  : "${appconfig.datadir}/public/files"
+        },
+        {
+          "type"    : "symlink",
+          "name"    : "${appconfig.apache2.dir}/assets",
+          "source"  : "${appconfig.datadir}/public/assets"
         },
         {
           "type"  : "directory",
