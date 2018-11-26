@@ -124,7 +124,8 @@
           "gname" : "${apache2.gname}",
           "mode"  : "0755",
           "names" : [
-            "${appconfig.datadir}/tmp"
+            "${appconfig.datadir}/tmp",
+            "${appconfig.datadir}/db"
           ]
         },
         {
