@@ -1,0 +1,8 @@
+/ubos/log/decko-${appconfig.appconfigid}/*log {
+   missingok
+   sharedscripts
+   compress
+   postrotate
+      /bin/touch /ubos/share/decko/tmpl/restart.txt
+   endscript
+}
