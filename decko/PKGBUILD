@@ -3,7 +3,7 @@ url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
 pkgver=0.6.7
-pkgrel=3
+pkgrel=4
 pkgdesc="A wiki approach to stuctured data and web design"
 arch=('any')
 license=("GPL")
@@ -26,6 +26,7 @@ sha512sums=('04634adde84f0277bbec8d94bf817eccf3d8cf13c2f986b07d53d456ad7e815cf0f
 build() {
     cd ${srcdir}/decko-${pkgver}
     cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+    HOME=$(pwd) bundle update --bundler
     HOME=$(pwd) bundle install --path gems --without development test
 
     # Remove log files
