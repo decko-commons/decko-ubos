@@ -133,6 +133,12 @@
           "source" : "/ubos/share/decko/ubos_logging.pl"
         },
         {
+          "type"          : "file",
+          "name"          : "/etc/logrotate.d/decko-${appconfig.appconfigid}",
+          "template"      : "tmpl/logrotate.tmpl",
+          "templatelang"  : "varsubst"
+        },
+        {
           "type"  : "systemd-service",
           "name"  : "decko@${appconfig.appconfigid}"
         }
