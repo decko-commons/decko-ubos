@@ -28,6 +28,17 @@
             "/account/*",
             "/*.json"
           ]
+        },
+        "robots.txt" : {
+          "disallow" : [
+            "/card/*",
+            "/create/*",
+            "/update/*",
+            "/delete/*",
+            "/admin/*",
+            "/account/*",
+            "/*.json"
+          ]
         }
       },
       "appconfigitems" : [
