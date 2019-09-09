@@ -108,7 +108,7 @@
         {
           "type"    : "symlink",
           "name"    : "${appconfig.datadir}/log",
-          "source"  : "/var/log/${package.name}/${appconfig.appconfigid}"
+          "source"  : "/ubos/log/${package.name}-${appconfig.appconfigid}"
         },
         {
           "type"    : "symlink",
