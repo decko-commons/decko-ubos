@@ -96,7 +96,7 @@ package() {
     install -D -m0644 ${startdir}/systemd/*.service -t ${pkgdir}/usr/lib/systemd/system/
 
 # Logging
-    mkdir -p -m755 ${pkgdir}/var/log/${pkgname}
+    mkdir -p -m755 ${pkgdir}/ubos/log
 
 # License
     install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
