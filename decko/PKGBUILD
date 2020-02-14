@@ -3,7 +3,7 @@ url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
 pkgver=0.8.3
-pkgrel=3
+pkgrel=4
 pkgdesc="A wiki approach to stuctured data and web design"
 arch=('any')
 license=("GPL")
@@ -26,6 +26,8 @@ sha512sums=('1870978163e736d935d6bdacfb0b30f24814b69007108555a185161e416292f9bb0
 build() {
     cd ${srcdir}/decko-${pkgver}
     cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+    # HOME=$(pwd) bundle install --path vendor/bundle
+    HOME=$(pwd) bundle config set path 'vendor/bundle'
     HOME=$(pwd) bundle update --bundler
     HOME=$(pwd) bundle install --path gems --without development test
 
@@ -100,4 +102,7 @@ package() {
 
 # License
     install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
+
+# Fix shared library temporarily
+    (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.2.0/lib/sassc && ln -s ../../ext/libsass.so)
 }
