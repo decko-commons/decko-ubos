@@ -1,16 +1,14 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
+gem "decko"
+gem "card-mod-defaults"
 
-gem 'decko'
+gem "mysql2"
 
-
-gem 'mysql2', '>= 0.3.18', '< 0.5'
-
-gem 'dalli'
-
+gem "dalli"
 
 # load gems needed in Gemfiles
 # You may need to alter this code if you move your mod(s) to an unconventional location.
-Dir.glob( 'mod/**{,/*/**}/Gemfile' ).each do |gemfile|
+Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|
   instance_eval File.read(gemfile)
 end
