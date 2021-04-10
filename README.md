@@ -28,6 +28,9 @@ to this:
     pacman -S base-devel
 
     pacman -S decko # install existing decko (that gives us ruby, bundler etc)
-    
+    # should probably be able to get away with less.
     
     bundle update
+
+    # update version in PKGBUILD
+    
