@@ -14,7 +14,7 @@ use UBOS::Utils;
 my $appconfigid = $config->getResolve( 'appconfig.appconfigid' );
 my $appid       = $config->getResolve( 'appconfig.appid' );
 
-my $logDir  = "/var/log/$appid/$appconfigid";
+my $logDir  = "/ubos/log/$appid-$appconfigid";
 my $logFile = "$logDir/production.log";
 
 if ($operation eq 'deploy') {

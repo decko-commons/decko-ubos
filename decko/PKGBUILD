@@ -21,11 +21,13 @@ depends=(
 )
 
 options=('!strip')
-sha512sums=('d286235cfb2157f3b66f632bc1b42d0bb8617821e90d0e324eda1ef10aad721f7752dad0f91aa340e14ad8c1c13558071bb8560accb7aeeed225f5fc2ab09357')
+sha512sums=('1870978163e736d935d6bdacfb0b30f24814b69007108555a185161e416292f9bb00dbbbf6735ec2e8b0731ccbd497e73d6f8a2f0f3e3f0ad940fde41dac986c')
 
 build() {
     cd ${srcdir}/decko-${pkgver}
     cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+    # HOME=$(pwd) bundle install --path vendor/bundle
+    HOME=$(pwd) bundle config set path 'vendor/bundle'
     HOME=$(pwd) bundle update --bundler
     HOME=$(pwd) bundle install --path gems --without development test
 
@@ -96,8 +98,11 @@ package() {
     install -D -m0644 ${startdir}/systemd/*.service -t ${pkgdir}/usr/lib/systemd/system/
 
 # Logging
-    mkdir -p -m755 ${pkgdir}/var/log/${pkgname}
+    mkdir -p -m755 ${pkgdir}/ubos/log
 
 # License
     install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
+
+# Fix shared library temporarily
+    (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.2.0/lib/sassc && ln -s ../../ext/libsass.so)
 }

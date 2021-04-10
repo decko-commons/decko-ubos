@@ -3,4 +3,5 @@ pkg/
 src/
 *.tar
 *.tar.xz
+*.tar.zst
 *.zip
