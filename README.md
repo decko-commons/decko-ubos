@@ -1,36 +1,46 @@
 # decko-ubos
+Packaging Decko tool for UBOS
 
+# Update local docker image
+
+    # might need docker pull command?
+    
+    docker build -t ubos-green .
 
 # Docker dev environment
 
-To get a dev instance running, run the following from the root of this repo.
+1. To get a dev instance running, make sure you have docker installed and then run the 
+following from the root of this repo.
+
 
     rake run_green
 
-Update UBOS to the latest and greatest:
+2. Sign in as root (Note: password is in the output)
+3. Run setup shell script inside container.
 
-    % sudo ubos-admin update
+   
+    /home/decko-ubos/setup.sh
 
-Relax the rules usually requiring valid package signatures for all packages on UBOS. This
-allows you to install your own packages without having to sign them. In the UBOS
-container, in file /etc/pacman.conf, change this line:
+    # at the end you should be in /home/decko-ubos/decko
 
-    LocalFileSigLevel = Required TrustedOnly
-
-to this:
-
-    LocalFileSigLevel = Optional
 
 
 # Update to latest Decko version
 
-    pacman -Sy # sync maybe?
-    pacman -S base-devel
+1. Start by updating gems (including decko)
 
-    pacman -S decko # install existing decko (that gives us ruby, bundler etc)
-    # should probably be able to get away with less.
-    
+
     bundle update
 
-    # update version in PKGBUILD
+2. Meanwhile, edit PKGBUILD.
+
+    - update decko version in PKGBUILD
+    - reset pkgrel to 1 if it has been changed
+    
+3. Run the following
+
+
+    updpkgsums   # update checksum in PKGBUILD
+    makepkg -f   # generate a new package
+    
     

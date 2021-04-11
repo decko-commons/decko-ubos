@@ -4,7 +4,7 @@ maintainer=${developer}
 pkgname=decko
 pkgver=0.11.3
 pkgrel=1
-pkgdesc="A wiki approach to stuctured data and web design"
+pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
 source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
@@ -21,15 +21,12 @@ depends=(
 )
 
 options=('!strip')
-sha512sums=('1870978163e736d935d6bdacfb0b30f24814b69007108555a185161e416292f9bb00dbbbf6735ec2e8b0731ccbd497e73d6f8a2f0f3e3f0ad940fde41dac986c')
+sha512sums=('bb96f071a851869cf5b210e8347d3415cd2c758d5b73c8beeba0878e94a350a8bec254e32c92729e9c9f72dda094674e859de55d9146eeb759c634adb71b8eb1')
 
 build() {
     cd ${srcdir}/decko-${pkgver}
     cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
-    # HOME=$(pwd) bundle install --path vendor/bundle
-    HOME=$(pwd) bundle config set path 'vendor/bundle'
-    HOME=$(pwd) bundle update --bundler
-    HOME=$(pwd) bundle install --path gems --without development test
+    HOME=$(pwd) bundle update
 
     # Remove log files
     logs=$(find . -name gem_make.out -or -name mkmf.log)
