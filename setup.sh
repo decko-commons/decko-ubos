@@ -9,6 +9,7 @@ cp /home/decko-ubos/decko/pacman.conf /etc/pacman.conf
 
 echo "setting up shepherd account"
 ubos-admin setup-shepherd
+passwd shepherd
 su shepherd
 
 echo "cd'ing to decko dir"

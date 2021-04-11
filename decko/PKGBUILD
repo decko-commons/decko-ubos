@@ -101,5 +101,5 @@ package() {
     install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
 
 # Fix shared library temporarily
-    (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.2.0/lib/sassc && ln -s ../../ext/libsass.so)
+    (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.4.0/lib/sassc && ln -s ../../ext/libsass.so)
 }

@@ -1,5 +1,5 @@
 # decko-ubos
-Packaging Decko tool for UBOS
+Packaging Decko tool for UBOS.
 
 # Update local docker image
 
@@ -21,8 +21,8 @@ following from the root of this repo.
    
     /home/decko-ubos/setup.sh
 
-    # at the end you should be in /home/decko-ubos/decko
-
+You will be prompted to add a password for the shepherd account (needed for sudo). At
+the end you should be in /home/decko-ubos/decko
 
 
 # Update to latest Decko version

@@ -5,4 +5,4 @@ src/
 *.tar.xz
 *.tar.zst
 *.zip
-decko/vendor
+decko/gems
