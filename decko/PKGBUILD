@@ -26,7 +26,10 @@ sha512sums=('bb96f071a851869cf5b210e8347d3415cd2c758d5b73c8beeba0878e94a350a8bec
 build() {
     cd ${srcdir}/decko-${pkgver}
     cp -a ${startdir}/{config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
-    HOME=$(pwd) bundle update
+    HOME=$(pwd) bundle config set path 'gems'
+    HOME=$(pwd) bundle config set without 'development test'
+    HOME=$(pwd) bundle install
+    HOME=$(pwd) bundle update --bundler
 
     # Remove log files
     logs=$(find . -name gem_make.out -or -name mkmf.log)
