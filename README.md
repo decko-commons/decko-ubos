@@ -43,4 +43,8 @@ the end you should be in /home/decko-ubos/decko
     updpkgsums   # update checksum in PKGBUILD
     makepkg -f   # generate a new package
     
+# Create a Deck
+
+    pacman -U decko-*-any.pkg.tar.zst # install a package you've generated
+    
     

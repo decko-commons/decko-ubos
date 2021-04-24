@@ -11,7 +11,7 @@ module DeckoUbos
     config.recaptcha_private_key = '${installable.customizationpoints.recaptcha_private_key.value}'
     # config.recaptcha_proxy = ...
 
-    config.cache_store = :memcached_store, '127.0.0.1:6001'
+    config.cache_store = :mem_cache_store, '127.0.0.1:6001'
 
     # config.action_dispatch.default_headers = {
     #  'X-Frame-Options' => 'ALLOWALL'
