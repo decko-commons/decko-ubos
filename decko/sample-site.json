@@ -1,0 +1,28 @@
+{
+   "admin" : {
+      "credential" : "decko1234",
+      "username" : "deckobot",
+      "userid" : "admin",
+      "email" : "ubos@decko.org"
+   },
+   "lastupdated" : "20210425-033255",
+   "hostname" : "*",
+   "appconfigs" : [
+      {
+         "customizationpoints" : {
+            "decko" : {
+               "recaptcha_public_key" : {
+                  "value" : ""
+               },
+               "recaptcha_private_key" : {
+                  "value" : ""
+               }
+            }
+         },
+         "appconfigid" : "af64617d582e44449dca14c850ecfe04eab06ebf3",
+         "context" : "/deck",
+         "appid" : "decko"
+      }
+   ],
+   "siteid" : "s30538da27d3d5ba646cd78fffa32b3f68e9522b5"
+}

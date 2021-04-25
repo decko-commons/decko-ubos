@@ -5,6 +5,7 @@ def run_ubos_container color, tag=:latest
   system %(
     docker run -it \
       --cap-add SYS_ADMIN \
+      -p 8080:80 \
       -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
       -v $(pwd):/home/decko-ubos \
       ubos-#{color}:#{tag}
