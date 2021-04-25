@@ -37,13 +37,15 @@ the end you should be in /home/decko-ubos/decko
     - update decko version in PKGBUILD
     - reset pkgrel to 1 if it has been changed
     
-3. Run the following
+3. Run the following as shepherd:
 
 
     updpkgsums   # update checksum in PKGBUILD
     makepkg -f   # generate a new package
     
 # Create a Deck
+
+Run the following as root:
 
     pacman -U decko-*-any.pkg.tar.zst # install a package you've generated
     
