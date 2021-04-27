@@ -48,5 +48,4 @@ the end you should be in /home/decko-ubos/decko
 Run the following as root:
 
     pacman -U decko-*-any.pkg.tar.zst # install a package you've generated
-    
-    
+    ubos-admin createsite
