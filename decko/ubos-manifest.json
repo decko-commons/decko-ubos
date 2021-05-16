@@ -98,11 +98,6 @@
           "templatelang" : "varsubst"
         },
         {
-          "type"         : "file",
-          "name"         : "${appconfig.datadir}/.bundle/config",
-          "template"     : "tmpl/bundle_config"
-        },
-        {
           "type"          : "file",
           "name"          : "${appconfig.datadir}/config/application.rb",
           "template"      : "tmpl/application.rb.tmpl",
@@ -114,14 +109,13 @@
           "source"  : "/ubos/log/${package.name}-${appconfig.appconfigid}"
         },
         {
-          "type"    : "symlink",
-          "name"    : "${appconfig.apache2.dir}/files",
-          "source"  : "${appconfig.datadir}/public/files"
+          "type"  : "directory",
+          "name"  : "${appconfig.datadir}/.bundle",
         },
         {
           "type"    : "symlink",
-          "name"    : "${appconfig.apache2.dir}/assets",
-          "source"  : "${appconfig.datadir}/public/assets"
+          "name"    : "${appconfig.datadir}/.bundle/config",
+          "source"  : "tmpl/bundle_config"
         },
         {
           "type"  : "directory",
