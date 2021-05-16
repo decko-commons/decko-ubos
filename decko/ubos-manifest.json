@@ -61,12 +61,12 @@
         {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/Gemfile",
+            "${appconfig.datadir}/.bundle",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
             "${appconfig.datadir}/script"
           ],
-          "source"          : "/ubos/share/${package.name}/$2",
+          "source"          : "/ubos/share/${package.name}/tmpl/$2",
           "filepermissions" : "preserve",
           "dirpermissions"  : "preserve"
         },
@@ -84,12 +84,19 @@
         {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/Gemfile.lock",
-            "${appconfig.datadir}/config.ru"
+            "${appconfig.datadir}/Gemfile",
+            "${appconfig.datadir}/Gemfile.lock"
           ],
           "uname"  : "${apache2.uname}",
           "gname"  : "${apache2.gname}",
           "source" : "/ubos/share/${package.name}/$2"
+        },
+        {
+          "type": "file",
+          "name": "${appconfig.datadir}/config.ru",
+          "uname"  : "${apache2.uname}",
+          "gname"  : "${apache2.gname}",
+          "source" : "/ubos/share/${package.name}/tmpl.config.ru"
         },
         {
           "type"         : "file",
@@ -109,13 +116,14 @@
           "source"  : "/ubos/log/${package.name}-${appconfig.appconfigid}"
         },
         {
-          "type"  : "directory",
-          "name"  : "${appconfig.datadir}/.bundle",
+          "type": "symlink",
+          "name": "${appconfig.apache2.dir}/files",
+          "source": "${appconfig.datadir}/public/files"
         },
         {
-          "type"    : "symlink",
-          "name"    : "${appconfig.datadir}/.bundle/config",
-          "source"  : "tmpl/bundle_config"
+          "type": "symlink",
+          "name": "${appconfig.apache2.dir}/assets",
+          "source": "${appconfig.datadir}/public/assets"
         },
         {
           "type"  : "directory",

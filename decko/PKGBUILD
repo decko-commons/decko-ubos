@@ -74,6 +74,7 @@ package() {
     '.bundle'
     'Gemfile'
     'Gemfile.lock'
+    'tmpl'
     'Rakefile'
     'config.ru'
     'config/boot.rb'
@@ -81,7 +82,6 @@ package() {
     'config/routes.rb'
     'config/storage.yml'
     'public/files'
-    'gems'
     'script'
   )
 
