@@ -2,7 +2,7 @@ developer=http://grasscommons.org/
 url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.11.3
+pkgver=0.11.5
 pkgrel=1
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
@@ -21,12 +21,13 @@ depends=(
 )
 
 options=('!strip')
-sha512sums=('bb96f071a851869cf5b210e8347d3415cd2c758d5b73c8beeba0878e94a350a8bec254e32c92729e9c9f72dda094674e859de55d9146eeb759c634adb71b8eb1')
+sha512sums=('c177036c590f6885f2ac7ac4377696a5d967c32aa76ea1eaf532ee2abc9225c45265f5718211c9078f8ab527abcb1aabef7a8d04c752d1e710353feef4641957')
 
 build() {
     cd ${srcdir}/decko-${pkgver}
-    cp -a ${startdir}/{.bundle,config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
-    HOME=$(pwd) bundle install
+    cp -a ${startdir}/{.bundle,gems,config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+    HOME=$(pwd) bundle install;
+    HOME=$(pwd) bundle clean;
 
     # Remove log files
     logs=$(find . -name gem_make.out -or -name mkmf.log)

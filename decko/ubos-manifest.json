@@ -65,8 +65,7 @@
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
-            "${appconfig.datadir}/script",
-            "${appconfig.datadir}/gems"
+            "${appconfig.datadir}/script"
           ],
           "source"          : "/ubos/share/${package.name}/$2",
           "filepermissions" : "preserve",
@@ -98,6 +97,11 @@
           "name"         : "${appconfig.datadir}/config/database.yml",
           "template"     : "tmpl/database.yml.tmpl",
           "templatelang" : "varsubst"
+        },
+        {
+          "type"         : "file",
+          "name"         : "${appconfig.datadir}/.bundle/config",
+          "template"     : "tmpl/bundle_config"
         },
         {
           "type"          : "file",

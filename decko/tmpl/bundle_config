@@ -1,4 +1,4 @@
 ---
 BUNDLE_FROZEN: "true"
-BUNDLE_PATH: "gems"
+BUNDLE_PATH: "/ubos/share/decko/gems"
 BUNDLE_WITHOUT: "development:test"
