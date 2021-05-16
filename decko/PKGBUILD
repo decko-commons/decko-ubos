@@ -25,7 +25,7 @@ sha512sums=('c177036c590f6885f2ac7ac4377696a5d967c32aa76ea1eaf532ee2abc9225c4526
 
 build() {
   cd ${srcdir}/decko-${pkgver}
-  cp -a ${startdir}/{.bundle,config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
+  cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
   HOME=$(pwd) bundle install;
   HOME=$(pwd) bundle clean;
 
@@ -75,14 +75,6 @@ package() {
     'Gemfile'
     'Gemfile.lock'
     'tmpl'
-    'Rakefile'
-    'config.ru'
-    'config/boot.rb'
-    'config/environment.rb'
-    'config/routes.rb'
-    'config/storage.yml'
-    'public/files'
-    'script'
   )
 
   for t in ${toCopy[@]}; do
