@@ -61,7 +61,6 @@
         {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/.bundle",
             "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
