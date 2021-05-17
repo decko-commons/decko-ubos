@@ -19,7 +19,6 @@ depends=(
   'mod_xsendfile'
   'smtp-server'
 )
-
 options=('!strip')
 sha512sums=('c177036c590f6885f2ac7ac4377696a5d967c32aa76ea1eaf532ee2abc9225c45265f5718211c9078f8ab527abcb1aabef7a8d04c752d1e710353feef4641957')
 
