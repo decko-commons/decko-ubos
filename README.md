@@ -4,9 +4,8 @@ Packaging Decko tool for UBOS.
 # Build local docker image
 
 ``` 
-# might need docker pull command?
-
-docker build -t ubos-green .
+docker pull ubos/ubos-green
+docker build -t ubos-decko-green .
 ```
 
 # Setup Docker dev environment

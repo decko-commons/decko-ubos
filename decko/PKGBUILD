@@ -70,10 +70,9 @@ package() {
 
 # From $srcdir:
   toCopy=(
-    '.bundle'
+    'gems'
     'Gemfile'
     'Gemfile.lock'
-    'tmpl'
   )
 
   for t in ${toCopy[@]}; do

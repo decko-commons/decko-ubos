@@ -64,6 +64,7 @@
             "${appconfig.datadir}/.bundle",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
+            "${appconfig.datadir}/config.ru",
             "${appconfig.datadir}/script"
           ],
           "source"          : "/ubos/share/${package.name}/tmpl/$2",
@@ -75,7 +76,7 @@
           "names": [
             "${appconfig.datadir}/public/files"
           ],
-          "source"          : "/ubos/share/${package.name}/public/files",
+          "source"          : "/ubos/share/${package.name}/tmpl/public/files",
           "uname"           : "${apache2.uname}",
           "gname"           : "${apache2.gname}",
           "filepermissions" : "preserve",
@@ -96,7 +97,7 @@
           "name": "${appconfig.datadir}/config.ru",
           "uname"  : "${apache2.uname}",
           "gname"  : "${apache2.gname}",
-          "source" : "/ubos/share/${package.name}/tmpl.config.ru"
+          "source" : "/ubos/share/${package.name}/tmpl/config.ru"
         },
         {
           "type"         : "file",

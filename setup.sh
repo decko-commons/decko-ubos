@@ -1,8 +1,11 @@
-echo "updating ubos-admin"
-ubos-admin update
+# echo "populating pacman keys"
+# pacman-key --populate
 
 echo "installing dev packages needed for makepkg to work"
 pacman -S --noconfirm base-devel pacman-contrib decko
+
+echo "updating ubos-admin"
+ubos-admin update
 
 echo "cd'ing to decko dir"
 cd /home/decko-ubos/decko
