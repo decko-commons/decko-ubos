@@ -2,7 +2,7 @@
 # pacman-key --populate
 
 echo "installing dev packages needed for makepkg to work"
-pacman -S --noconfirm base-devel pacman-contrib decko
+pacman -S --noconfirm base-devel pacman-contrib decko webapptest
 
 echo "updating ubos-admin"
 ubos-admin update
