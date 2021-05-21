@@ -7,6 +7,8 @@ gem "mysql2"
 
 gem "dalli"
 
+gem "irb"
+
 # load gems needed in Gemfiles
 # You may need to alter this code if you move your mod(s) to an unconventional location.
 Dir.glob("mod/**{,/*/**}/Gemfile").each do |gemfile|

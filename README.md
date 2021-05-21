@@ -1,24 +1,25 @@
 # decko-ubos
+
 Packaging Decko tool for UBOS.
 
-# Build local docker image
+# Setup Docker dev environment
+
+1. Make sure you have an up-to-date local docker image
 
 ``` 
 docker pull ubos/ubos-green
 docker build -t ubos-decko-green .
 ```
 
-# Setup Docker dev environment
-
-1. To get a dev instance running, make sure you have docker installed and then run the following from the root of this repo.
+2. To get a dev instance running, make sure you have docker installed and then run the
+   following from the root of this repo.
 
 ```
 rake run_green
 ```
-    
 
-2. Sign in as root (Note: password is in the output)
-3. Run setup shell script inside container.
+3. Sign in as root (Note: password is in the output)
+4. Run setup shell script inside container.
 
 ```   
 /home/decko-ubos/setup.sh
@@ -28,11 +29,13 @@ At the end you should be in /home/decko-ubos/decko, logged in as the shepherd us
 
 # Start / Stop container
 
-Best practice is to stop and start the container (not remove it) unless you have to rebuild or alter the docker run command.
+Best practice is to stop and start the container (not remove it) unless you have to
+rebuild or alter the docker run command.
 
 ``` 
 docker start [dockerid]
 docker exec -it [dockerid] bash
+docker stop [dockerid]
 ```
 
 # Update to latest Decko version
@@ -48,7 +51,7 @@ bundle update
 
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
-    
+
 3. Run the following as shepherd:
 
 ```

@@ -6,3 +6,4 @@ src/
 *.tar.zst
 *.zip
 decko/gems
+backups
