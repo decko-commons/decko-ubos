@@ -2,105 +2,96 @@ developer=http://grasscommons.org/
 url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.11.3
+pkgver=0.11.5
 pkgrel=1
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
 source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
-    'ruby'
-    'ruby-bundler'
-    'mod_passenger'
-    'mariadb-clients'
-    'imagemagick'
-    'nodejs'
-    'memcached'
-    'mod_xsendfile'
-    'smtp-server'
+  'ruby'
+  'ruby-bundler'
+  'mod_passenger'
+  'mariadb-clients'
+  'imagemagick'
+  'nodejs'
+  'memcached'
+  'mod_xsendfile'
+  'smtp-server'
 )
-
 options=('!strip')
-sha512sums=('bb96f071a851869cf5b210e8347d3415cd2c758d5b73c8beeba0878e94a350a8bec254e32c92729e9c9f72dda094674e859de55d9146eeb759c634adb71b8eb1')
+sha512sums=('c177036c590f6885f2ac7ac4377696a5d967c32aa76ea1eaf532ee2abc9225c45265f5718211c9078f8ab527abcb1aabef7a8d04c752d1e710353feef4641957')
 
 build() {
-    cd ${srcdir}/decko-${pkgver}
-    cp -a ${startdir}/{.bundle,config,public,script,config.ru,Gemfile,Gemfile.lock,Rakefile} .
-    HOME=$(pwd) bundle install
+  cd ${srcdir}/decko-${pkgver}
+  cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
+  HOME=$(pwd) bundle install;
+  HOME=$(pwd) bundle clean;
 
-    # Remove log files
-    logs=$(find . -name gem_make.out -or -name mkmf.log)
-    if [[ $logs ]]; then
-        rm $logs
-    fi
+  # Remove log files
+  logs=$(find . -name gem_make.out -or -name mkmf.log)
+  if [[ $logs ]]; then
+    rm $logs
+  fi
 
-    # Strip binaries
-    libs=$(find . -name '*.so' -or -name '*.o')
-    if [[ $libs ]]; then
-        strip $libs
-    fi
+  # Strip binaries
+  libs=$(find . -name '*.so' -or -name '*.o')
+  if [[ $libs ]]; then
+    strip $libs
+  fi
 }
 
 package() {
 # Manifest
-    install -D -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/ubos/lib/ubos/manifests/${pkgname}.json
+  install -D -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/ubos/lib/ubos/manifests/${pkgname}.json
 
 # Icons
-    install -D -m0644 ${startdir}/appicons/{72x72,144x144}.png -t ${pkgdir}/ubos/http/_appicons/${pkgname}/
+  install -D -m0644 ${startdir}/appicons/{72x72,144x144}.png -t ${pkgdir}/ubos/http/_appicons/${pkgname}/
 
 # Data directory
-    mkdir -p ${pkgdir}/ubos/lib/${pkgname}
+  mkdir -p ${pkgdir}/ubos/lib/${pkgname}
 
 # Code -- be selective in what we package
-    mkdir -p ${pkgdir}/ubos/share/${pkgname}/
+  mkdir -p ${pkgdir}/ubos/share/${pkgname}/
 
 # From $startdir
-    toCopy=(
-        'ubos_cards.pl'
-        'ubos_logging.pl'
-        'tmpl'
-    )
-    for t in ${toCopy[@]}; do
-        from="${startdir}/${t}"
-        to="${pkgdir}/ubos/share/${pkgname}/${t}"
-        todir=$(dirname $to)
-        [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
-        cp -a ${from} ${todir}/
-    done
+  toCopy=(
+    'ubos_cards.pl'
+    'ubos_logging.pl'
+    'tmpl'
+  )
+  for t in ${toCopy[@]}; do
+    from="${startdir}/${t}"
+    to="${pkgdir}/ubos/share/${pkgname}/${t}"
+    todir=$(dirname $to)
+    [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
+    cp -a ${from} ${todir}/
+  done
 
 # From $srcdir:
-    toCopy=(
-        '.bundle'
-        'Gemfile'
-        'Gemfile.lock'
-        'Rakefile'
-        'config.ru'
-        'config/boot.rb'
-        'config/environment.rb'
-        'config/routes.rb'
-        'config/storage.yml'
-        'public/files'
-        'gems'
-        'script'
-    )
+  toCopy=(
+    'gems'
+    'Gemfile'
+    'Gemfile.lock'
+  )
 
-    for t in ${toCopy[@]}; do
-        from="${srcdir}/decko-${pkgver}/${t}"
-        to="${pkgdir}/ubos/share/${pkgname}/${t}"
-        todir=$(dirname $to)
-        [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
-        cp -a ${from} ${todir}/
-    done
+  for t in ${toCopy[@]}; do
+    from="${srcdir}/decko-${pkgver}/${t}"
+    to="${pkgdir}/ubos/share/${pkgname}/${t}"
+    todir=$(dirname $to)
+    [[ -d ${todir} ]] || mkdir -p -m 755 ${todir}
+    cp -a ${from} ${todir}/
+  done
 
 # Systemd
-    install -D -m0644 ${startdir}/systemd/*.service -t ${pkgdir}/usr/lib/systemd/system/
+  install -D -m0644 ${startdir}/systemd/*.service -t ${pkgdir}/usr/lib/systemd/system/
 
 # Logging
-    mkdir -p -m755 ${pkgdir}/ubos/log
+  mkdir -p -m755 ${pkgdir}/ubos/log
 
 # License
-    install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
+  install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
 
 # Fix shared library temporarily
-    (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.4.0/lib/sassc && ln -s ../../ext/libsass.so)
+  (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.4.0/lib/sassc && ln -s ../../ext/libsass.so)
 }

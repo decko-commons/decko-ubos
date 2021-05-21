@@ -8,7 +8,7 @@ def run_ubos_container color, tag=:latest
       -p 8080:80 \\
       -v /sys/fs/cgroup:/sys/fs/cgroup:ro \\
       -v $(pwd):/home/decko-ubos \\
-      ubos-#{color}:#{tag}
+      ubos-decko-#{color}:#{tag}
   )
 end
 

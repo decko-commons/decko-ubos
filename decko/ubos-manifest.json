@@ -62,13 +62,12 @@
           "type": "directorytree",
           "names": [
             "${appconfig.datadir}/.bundle",
-            "${appconfig.datadir}/Gemfile",
             "${appconfig.datadir}/Rakefile",
             "${appconfig.datadir}/config",
-            "${appconfig.datadir}/script",
-            "${appconfig.datadir}/gems"
+            "${appconfig.datadir}/config.ru",
+            "${appconfig.datadir}/script"
           ],
-          "source"          : "/ubos/share/${package.name}/$2",
+          "source"          : "/ubos/share/${package.name}/tmpl/$2",
           "filepermissions" : "preserve",
           "dirpermissions"  : "preserve"
         },
@@ -77,7 +76,7 @@
           "names": [
             "${appconfig.datadir}/public/files"
           ],
-          "source"          : "/ubos/share/${package.name}/public/files",
+          "source"          : "/ubos/share/${package.name}/tmpl/public/files",
           "uname"           : "${apache2.uname}",
           "gname"           : "${apache2.gname}",
           "filepermissions" : "preserve",
@@ -86,12 +85,19 @@
         {
           "type": "directorytree",
           "names": [
-            "${appconfig.datadir}/Gemfile.lock",
-            "${appconfig.datadir}/config.ru"
+            "${appconfig.datadir}/Gemfile",
+            "${appconfig.datadir}/Gemfile.lock"
           ],
           "uname"  : "${apache2.uname}",
           "gname"  : "${apache2.gname}",
           "source" : "/ubos/share/${package.name}/$2"
+        },
+        {
+          "type": "file",
+          "name": "${appconfig.datadir}/config.ru",
+          "uname"  : "${apache2.uname}",
+          "gname"  : "${apache2.gname}",
+          "source" : "/ubos/share/${package.name}/tmpl/config.ru"
         },
         {
           "type"         : "file",
@@ -111,14 +117,14 @@
           "source"  : "/ubos/log/${package.name}-${appconfig.appconfigid}"
         },
         {
-          "type"    : "symlink",
-          "name"    : "${appconfig.apache2.dir}/files",
-          "source"  : "${appconfig.datadir}/public/files"
+          "type": "symlink",
+          "name": "${appconfig.apache2.dir}/files",
+          "source": "${appconfig.datadir}/public/files"
         },
         {
-          "type"    : "symlink",
-          "name"    : "${appconfig.apache2.dir}/assets",
-          "source"  : "${appconfig.datadir}/public/assets"
+          "type": "symlink",
+          "name": "${appconfig.apache2.dir}/assets",
+          "source": "${appconfig.datadir}/public/assets"
         },
         {
           "type"  : "directory",

@@ -4,9 +4,8 @@ Packaging Decko tool for UBOS.
 # Build local docker image
 
 ``` 
-# might need docker pull command?
-
-docker build -t ubos-green .
+docker pull ubos/ubos-green
+docker build -t ubos-decko-green .
 ```
 
 # Setup Docker dev environment
@@ -29,9 +28,10 @@ At the end you should be in /home/decko-ubos/decko, logged in as the shepherd us
 
 # Start / Stop container
 
-Best practice is not to stop and start the container (not remove it) unless you have to rebuild or alter the docker run command.
+Best practice is to stop and start the container (not remove it) unless you have to rebuild or alter the docker run command.
 
 ``` 
+docker start [dockerid]
 docker exec -it [dockerid] bash
 ```
 
@@ -40,6 +40,7 @@ docker exec -it [dockerid] bash
 1. Start by updating gems (including decko)
 
 ```
+cd /home/decko-ubos/decko
 bundle update
 ```
 
@@ -48,7 +49,7 @@ bundle update
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
     
-3. Run the following:
+3. Run the following as shepherd:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
