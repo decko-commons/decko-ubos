@@ -40,10 +40,17 @@ docker stop [dockerid]
 
 # Update to latest Decko version
 
-1. Start by updating gems (including decko)
+1. Start by updating gems (including decko) FROM OUTSIDE THE CONTAINER
+
+#TODO: STOP INSTALLING INTO GEMS DIR
+
+This bundle update is just to update the Gemfile.lock. There is no need to install
+anything into the gems directory.  Will need to look at .bundle/config handling to get
+this right.
 
 ```
-cd /home/decko-ubos/decko
+# from decko-ubos root
+cd decko
 bundle update
 ```
 
@@ -52,7 +59,7 @@ bundle update
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
 
-3. Run the following as shepherd:
+3. Run the following INSIDE THE CONTAINER as shepherd:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
