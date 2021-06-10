@@ -22,7 +22,7 @@ if ($operation eq 'install') {
 
 if ($command) {
     my $out;
-    my $full_command = "cd $datadir; sudo -u http bundle exec $command";
+    my $full_command = "cd $datadir; sudo -u http bundle-2.7 exec $command";
     if( UBOS::Utils::myexec( $full_command, undef, \$out, \$out )) {
         # This will complain that it cannot write to ~http (/srv/http)
         # for the .bundle directory. Instead it will create a temporary

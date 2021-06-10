@@ -3,14 +3,14 @@ url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
 pkgver=0.11.6
-pkgrel=1
+pkgrel=2
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
 source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
-  'ruby'
-  'ruby-bundler'
+  'ruby2.7'
+  'ruby27-bundler'
   'mod_passenger'
   'mariadb-clients'
   'imagemagick'
@@ -25,8 +25,8 @@ sha512sums=('51eaf4f184177d34c04f14d21b28a266eb620e76f2487bb3389a8081748a22dd81c
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
-  HOME=$(pwd) bundle install;
-  HOME=$(pwd) bundle clean;
+  HOME=$(pwd) bundle-2.7 install;
+  HOME=$(pwd) bundle-2.7 clean;
 
   # Remove log files
   logs=$(find . -name gem_make.out -or -name mkmf.log)
@@ -91,7 +91,4 @@ package() {
 
 # License
   install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
-
-# Fix shared library temporarily
-  (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.4.0/lib/sassc && ln -s ../../ext/libsass.so)
 }
