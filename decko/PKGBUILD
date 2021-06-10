@@ -11,7 +11,7 @@ source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
   'ruby2.7'
   'ruby27-bundler'
-  'mod_passenger'
+  'mod_passenger27'
   'mariadb-clients'
   'imagemagick'
   'nodejs'
