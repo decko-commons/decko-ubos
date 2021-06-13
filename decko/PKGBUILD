@@ -21,6 +21,11 @@ depends=(
 options=('!strip')
 sha512sums=('51eaf4f184177d34c04f14d21b28a266eb620e76f2487bb3389a8081748a22dd81cb9b11564b956abc4d654569c6cab848e67ff8e1c84e11a0eea88edffd7c58')
 
+prepare() {
+  cd ${srcdir}/decko-${pkgver}
+  patch -p0 < ${startdir}/rake_command_run_bundle-27.patch
+}
+
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
