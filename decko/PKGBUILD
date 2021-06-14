@@ -3,7 +3,7 @@ url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
 pkgver=0.11.6
-pkgrel=3
+pkgrel=4
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
@@ -21,16 +21,29 @@ depends=(
 options=('!strip')
 sha512sums=('51eaf4f184177d34c04f14d21b28a266eb620e76f2487bb3389a8081748a22dd81cb9b11564b956abc4d654569c6cab848e67ff8e1c84e11a0eea88edffd7c58')
 
+_patchRakeCommand() {
+    cd $1
+    echo XXX BEFORE $1
+    ls -al lib/decko/commands/rake_command.rb
+
+    patch -p0 < ${startdir}/rake_command_run_bundle-27.patch
+    echo XXX AFTER
+    ls -al lib/decko/commands/rake_command.rb
+}
+
 prepare() {
-  cd ${srcdir}/decko-${pkgver}
-  patch -p0 < ${startdir}/rake_command_run_bundle-27.patch
+  _patchRakeCommand "${srcdir}/decko-${pkgver}/decko"
 }
 
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
   HOME=$(pwd) bundle-2.7 install;
+  echo XXX FOO
+  ls -al decko/lib/decko/commands/rake_command.rb
   HOME=$(pwd) bundle-2.7 clean;
+  echo XXX BAR
+  ls -al decko/lib/decko/commands/rake_command.rb
 
   # Remove log files
   logs=$(find . -name gem_make.out -or -name mkmf.log)
@@ -43,6 +56,8 @@ build() {
   if [[ $libs ]]; then
     strip $libs
   fi
+
+  _patchRakeCommand "${srcdir}/decko-${pkgver}/gems/ruby/2.7.0/gems/decko-${pkgver}"
 }
 
 package() {
