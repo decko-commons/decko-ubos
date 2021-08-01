@@ -2,8 +2,8 @@ developer=http://grasscommons.org/
 url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.11.6
-pkgrel=4
+pkgver=0.11.7
+pkgrel=1
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
@@ -19,7 +19,7 @@ depends=(
   'smtp-server'
 )
 options=('!strip')
-sha512sums=('51eaf4f184177d34c04f14d21b28a266eb620e76f2487bb3389a8081748a22dd81cb9b11564b956abc4d654569c6cab848e67ff8e1c84e11a0eea88edffd7c58')
+sha512sums=('855f2d28d59a54e607892b62f29be555ed6b5a8d5ea08bbecce08218f2e9cc500fddf28a03f1e0d6af5299a521f0c1ba3dac5413b922f8133252e780e549a14d')
 
 _patchRakeCommand() {
     cd $1
@@ -36,9 +36,8 @@ prepare() {
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
+  mv .bundle/config_template .bundle/config
   HOME=$(pwd) bundle-2.7 install;
-  ls -al decko/lib/decko/commands/rake_command.rb
-  HOME=$(pwd) bundle-2.7 clean;
   ls -al decko/lib/decko/commands/rake_command.rb
 
   # Remove log files
