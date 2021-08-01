@@ -36,6 +36,7 @@ prepare() {
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
+  mv .bundle/config_template .bundle/config
   HOME=$(pwd) bundle-2.7 install;
   ls -al decko/lib/decko/commands/rake_command.rb
 

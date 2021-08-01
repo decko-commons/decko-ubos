@@ -4,9 +4,7 @@ gem "decko", "0.11.7"
 gem "card-mod-defaults"
 
 gem "mysql2"
-
 gem "dalli"
-
 gem "irb"
 
 # load gems needed in Gemfiles
