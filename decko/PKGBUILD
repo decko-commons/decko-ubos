@@ -2,16 +2,15 @@ developer=http://grasscommons.org/
 url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.11.5
-pkgrel=1
+pkgver=0.11.6
+pkgrel=4
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
 source=("https://github.com/decko-commons/decko/archive/v${pkgver}.zip")
 depends=(
-  'ruby'
-  'ruby-bundler'
-  'mod_passenger'
+  'ruby2.7'
+  'mod_passenger27'
   'mariadb-clients'
   'imagemagick'
   'nodejs'
@@ -20,13 +19,27 @@ depends=(
   'smtp-server'
 )
 options=('!strip')
-sha512sums=('c177036c590f6885f2ac7ac4377696a5d967c32aa76ea1eaf532ee2abc9225c45265f5718211c9078f8ab527abcb1aabef7a8d04c752d1e710353feef4641957')
+sha512sums=('51eaf4f184177d34c04f14d21b28a266eb620e76f2487bb3389a8081748a22dd81cb9b11564b956abc4d654569c6cab848e67ff8e1c84e11a0eea88edffd7c58')
+
+_patchRakeCommand() {
+    cd $1
+    ls -al lib/decko/commands/rake_command.rb
+
+    patch -p0 < ${startdir}/rake_command_run_bundle-27.patch
+    ls -al lib/decko/commands/rake_command.rb
+}
+
+prepare() {
+  _patchRakeCommand "${srcdir}/decko-${pkgver}/decko"
+}
 
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
-  HOME=$(pwd) bundle install;
-  HOME=$(pwd) bundle clean;
+  HOME=$(pwd) bundle-2.7 install;
+  ls -al decko/lib/decko/commands/rake_command.rb
+  HOME=$(pwd) bundle-2.7 clean;
+  ls -al decko/lib/decko/commands/rake_command.rb
 
   # Remove log files
   logs=$(find . -name gem_make.out -or -name mkmf.log)
@@ -39,6 +52,8 @@ build() {
   if [[ $libs ]]; then
     strip $libs
   fi
+
+  _patchRakeCommand "${srcdir}/decko-${pkgver}/gems/ruby/2.7.0/gems/decko-${pkgver}"
 }
 
 package() {
@@ -91,7 +106,4 @@ package() {
 
 # License
   install -D -m644 ${startdir}/LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
-
-# Fix shared library temporarily
-  (cd ${pkgdir}/ubos/share/decko/gems/ruby/2.7.0/gems/sassc-2.4.0/lib/sassc && ln -s ../../ext/libsass.so)
 }

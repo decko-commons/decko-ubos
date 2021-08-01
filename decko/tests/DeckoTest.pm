@@ -22,6 +22,8 @@ my $TEST = new UBOS::WebAppTest(
   #    'toyapps' => 'http://depot.ubos.net/$channel/$arch/toyapps'
   # },
 
+  fixedTestContext => '',
+
   checks      => [
     new UBOS::WebAppTest::StateCheck(
       name  => 'virgin',

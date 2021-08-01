@@ -10,9 +10,9 @@
 
   "roles" : {
     "apache2" : {
-      "defaultcontext" : "/deck",
+      "fixedcontext" : "",
       "apache2modules" : [
-        "passenger",
+        "passenger27",
         "expires",
         "headers",
         "xsendfile"

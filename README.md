@@ -1,24 +1,25 @@
 # decko-ubos
+
 Packaging Decko tool for UBOS.
 
-# Build local docker image
+# Setup Docker dev environment
+
+1. Make sure you have an up-to-date local docker image
 
 ``` 
 docker pull ubos/ubos-green
 docker build -t ubos-decko-green .
 ```
 
-# Setup Docker dev environment
-
-1. To get a dev instance running, make sure you have docker installed and then run the following from the root of this repo.
+2. To get a dev instance running, make sure you have docker installed and then run the
+   following from the root of this repo.
 
 ```
 rake run_green
 ```
-    
 
-2. Sign in as root (Note: password is in the output)
-3. Run setup shell script inside container.
+3. Sign in as root (Note: password is in the output)
+4. Run setup shell script inside container.
 
 ```   
 /home/decko-ubos/setup.sh
@@ -28,19 +29,28 @@ At the end you should be in /home/decko-ubos/decko, logged in as the shepherd us
 
 # Start / Stop container
 
-Best practice is to stop and start the container (not remove it) unless you have to rebuild or alter the docker run command.
+Best practice is to stop and start the container (not remove it) unless you have to
+rebuild or alter the docker run command.
 
 ``` 
 docker start [dockerid]
 docker exec -it [dockerid] bash
+docker stop [dockerid]
 ```
 
 # Update to latest Decko version
 
-1. Start by updating gems (including decko)
+1. Start by updating gems (including decko) FROM OUTSIDE THE CONTAINER
+
+#TODO: STOP INSTALLING INTO GEMS DIR
+
+This bundle update is just to update the Gemfile.lock. There is no need to install
+anything into the gems directory.  Will need to look at .bundle/config handling to get
+this right.
 
 ```
-cd /home/decko-ubos/decko
+# from decko-ubos root
+cd decko
 bundle update
 ```
 
@@ -48,8 +58,8 @@ bundle update
 
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
-    
-3. Run the following as shepherd:
+
+3. Run the following INSIDE THE CONTAINER as shepherd:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
@@ -66,5 +76,3 @@ ubos-admin deploy --file sample-site.json  # deploy the site
 ```
 
 Once deployed, the site should be reachable at http://localhost:8080/deck
-
-
