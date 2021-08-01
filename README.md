@@ -4,49 +4,25 @@ Packaging Decko tool for UBOS.
 
 # Setup Docker dev environment
 
-1. Make sure you have an up-to-date local docker image
-
-``` 
-docker pull ubos/ubos-green
-docker build -t ubos-decko-green .
-```
-
-2. To get a dev instance running, make sure you have docker installed and then run the
-   following from the root of this repo.
+1. Make sure you have docker (and docker compose) installed and then run the following from the root of this repo.
 
 ```
-rake run_green
+docker compose up -d
 ```
 
-3. Sign in as root (Note: password is in the output)
-4. Run setup shell script inside container.
+May have to wait for services to start...
+
+2. Open shell.
 
 ```   
-/home/decko-ubos/setup.sh
+docker exec -i -t -u ubosdev ubos-develop bash
 ```
 
-At the end you should be in /home/decko-ubos/decko, logged in as the shepherd user.
 
-# Start / Stop container
-
-Best practice is to stop and start the container (not remove it) unless you have to
-rebuild or alter the docker run command.
-
-``` 
-docker start [dockerid]
-docker exec -it [dockerid] bash
-docker stop [dockerid]
-```
 
 # Update to latest Decko version
 
 1. Start by updating gems (including decko) FROM OUTSIDE THE CONTAINER
-
-#TODO: STOP INSTALLING INTO GEMS DIR
-
-This bundle update is just to update the Gemfile.lock. There is no need to install
-anything into the gems directory.  Will need to look at .bundle/config handling to get
-this right.
 
 ```
 # from decko-ubos root
@@ -59,7 +35,7 @@ bundle update
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
 
-3. Run the following INSIDE THE CONTAINER as shepherd:
+3. Run the following INSIDE THE CONTAINER:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
@@ -76,3 +52,10 @@ ubos-admin deploy --file sample-site.json  # deploy the site
 ```
 
 Once deployed, the site should be reachable at http://localhost:8080/deck
+
+# Run Test
+
+```
+webapptest run tests/DeckoTest.pm
+
+```
