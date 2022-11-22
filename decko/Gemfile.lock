@@ -245,7 +245,7 @@ GEM
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     daemons (1.4.0)
-    dalli (2.7.11)
+    dalli (3.2.3)
     decko (0.11.7)
       card (= 1.101.7)
       card-mod-defaults (= 0.11.7)
