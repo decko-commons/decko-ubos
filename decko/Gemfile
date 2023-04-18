@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "decko", "0.11.7"
+gem "decko"
 gem "card-mod-defaults"
 
 gem "mysql2"
