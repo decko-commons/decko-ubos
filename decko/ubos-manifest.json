@@ -12,7 +12,7 @@
     "apache2" : {
       "fixedcontext" : "",
       "apache2modules" : [
-        "passenger27",
+        "passenger",
         "expires",
         "headers",
         "xsendfile"

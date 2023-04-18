@@ -13,10 +13,14 @@ def run_ubos_container color, tag=:latest
   )
 end
 
-task :run_green do
-  run_ubos_container :green
-end
-
 task :run_red do
   run_ubos_container :red
+end
+
+task :run_yellow do
+  run_ubos_container :yellow
+end
+
+task :run_green do
+  run_ubos_container :green
 end

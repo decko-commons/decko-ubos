@@ -6,4 +6,5 @@ src/
 *.tar.zst
 *.zip
 decko/gems
+decko/.bash_history
 backups

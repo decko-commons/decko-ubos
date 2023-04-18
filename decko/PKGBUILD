@@ -19,7 +19,7 @@ depends=(
   'smtp-server'
 )
 options=('!strip')
-sha512sums=('855f2d28d59a54e607892b62f29be555ed6b5a8d5ea08bbecce08218f2e9cc500fddf28a03f1e0d6af5299a521f0c1ba3dac5413b922f8133252e780e549a14d')
+sha512sums=('460426b9c143aaca9547320c9821dc4d03e28e4b017584b9d45ae052be1d96a1204e6acc8e9991c69ee26fb74ad964db255c6db69dc037be117a1df34aea56bb')
 
 _patchRakeCommand() {
     cd $1
@@ -29,16 +29,16 @@ _patchRakeCommand() {
     ls -al lib/decko/commands/rake_command.rb
 }
 
-prepare() {
-  _patchRakeCommand "${srcdir}/decko-${pkgver}/decko"
-}
+# prepare() {
+#   _patchRakeCommand "${srcdir}/decko-${pkgver}/decko"
+# }
 
 build() {
   cd ${srcdir}/decko-${pkgver}
   cp -a ${startdir}/{.bundle,Gemfile,Gemfile.lock} .
   mv .bundle/config_template .bundle/config
   HOME=$(pwd) bundle-2.7 install;
-  ls -al decko/lib/decko/commands/rake_command.rb
+#  ls -al decko/lib/decko/commands/rake_command.rb
 
   # Remove log files
   logs=$(find . -name gem_make.out -or -name mkmf.log)
@@ -51,9 +51,9 @@ build() {
   if [[ $libs ]]; then
     strip $libs
   fi
-
-  _patchRakeCommand "${srcdir}/decko-${pkgver}/gems/ruby/2.7.0/gems/decko-${pkgver}"
 }
+#   _patchRakeCommand "${srcdir}/decko-${pkgver}/gems/ruby/2.7.0/gems/decko-${pkgver}"
+# }
 
 package() {
 # Manifest
