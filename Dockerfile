@@ -1,4 +1,4 @@
-FROM ubos/ubos-green:latest
+FROM ubos/ubos-red:latest
 
 ENV container=docker
 

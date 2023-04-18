@@ -16,3 +16,7 @@ end
 task :run_green do
   run_ubos_container :green
 end
+
+task :run_red do
+  run_ubos_container :red
+end
