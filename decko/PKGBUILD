@@ -21,17 +21,6 @@ depends=(
 options=('!strip')
 sha512sums=('460426b9c143aaca9547320c9821dc4d03e28e4b017584b9d45ae052be1d96a1204e6acc8e9991c69ee26fb74ad964db255c6db69dc037be117a1df34aea56bb')
 
-_patchRakeCommand() {
-    cd $1
-    ls -al lib/decko/commands/rake_command.rb
-
-    patch -p0 < ${startdir}/rake_command_run_bundle-27.patch
-    ls -al lib/decko/commands/rake_command.rb
-}
-
-# prepare() {
-#   _patchRakeCommand "${srcdir}/decko-${pkgver}/decko"
-# }
 
 build() {
   cd ${srcdir}/decko-${pkgver}
@@ -52,8 +41,6 @@ build() {
     strip $libs
   fi
 }
-#   _patchRakeCommand "${srcdir}/decko-${pkgver}/gems/ruby/2.7.0/gems/decko-${pkgver}"
-# }
 
 package() {
 # Manifest
