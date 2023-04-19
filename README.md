@@ -18,6 +18,12 @@ May have to wait for services to start...
 docker exec -i -t -u ubosdev ubos-develop bash
 ```
 
+3. Get the latest ubos-admin and install dependencies FROM INSIDE THE CONTAINER
+```
+sudo ubos-admin update
+sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
+```
+
 
 
 # Update to latest Decko version
@@ -47,8 +53,8 @@ makepkg -f   # generate a new package
 Run the following as root:
 
 ```
-pacman -U decko-*-any.pkg.tar.zst          # install a package you've generated
-ubos-admin deploy --file sample-site.json  # deploy the site
+sudo pacman -U decko-*-any.pkg.tar.zst          # install a package you've generated
+sudo ubos-admin deploy --file sample-site.json  # deploy the site
 ```
 
 Once deployed, the site should be reachable at http://localhost:8080/deck
