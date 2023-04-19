@@ -18,7 +18,7 @@ May have to wait for services to start...
 docker exec -i -t -u ubosdev ubos-develop bash
 ```
 
-3. Get the latest ubos-admin and install dependencies FROM INSIDE THE CONTAINER
+3. Get the latest ubos-admin and install dependencies from INSIDE the container
 ```
 sudo ubos-admin update
 sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
@@ -28,7 +28,7 @@ sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
 
 # Update to latest Decko version
 
-1. Start by updating gems (including decko) FROM OUTSIDE THE CONTAINER
+1. Start by updating gems (including decko) from OUTSIDE the container
 
 ```
 # from decko-ubos root
@@ -41,7 +41,7 @@ bundle update
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
 
-3. Run the following INSIDE THE CONTAINER:
+3. Run the following INSIDE the container:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
@@ -50,7 +50,7 @@ makepkg -f   # generate a new package
 
 # Deploy a Deck
 
-Run the following as root:
+Run the following INSIDE the container:
 
 ```
 sudo pacman -U decko-*-any.pkg.tar.zst          # install a package you've generated

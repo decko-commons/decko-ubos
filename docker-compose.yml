@@ -6,16 +6,16 @@ services:
     image: ubos/ubos-develop-${CHANNEL:-red}:latest
     working_dir: /home/ubosdev
     privileged: true
-    volumes:
-      - ./decko:/home/ubosdev
-
-  ubos-target:
-    container_name: ubos-target
-    image: ubos/ubos-target-${CHANNEL:-red}:latest
-    working_dir: /var/shepherd
     ports:
       - 8080:80
       - 8443:443
-    privileged: true
     volumes:
-     - ./var-shepherd:/var/shepherd
+      - ./decko:/home/ubosdev
+
+#  ubos-target:
+#    container_name: ubos-target
+#    image: ubos/ubos-target-${CHANNEL:-red}:latest
+#    working_dir: /var/shepherd
+#    privileged: true
+#    volumes:
+#     - ./var-shepherd:/var/shepherd
