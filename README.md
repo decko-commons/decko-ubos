@@ -34,6 +34,7 @@ sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
 # from decko-ubos root
 cd decko
 bundle update
+bundle info decko # confirm version. may need to tweak Gemfile to get it to work
 ```
 
 2. Meanwhile, edit PKGBUILD.
@@ -56,6 +57,16 @@ Run the following INSIDE the container:
 sudo pacman -U decko-*-any.pkg.tar.zst          # install a package you've generated
 sudo ubos-admin deploy --file sample-site.json  # deploy the site
 ```
+
+# Restore a Deck from backups
+
+```
+sudo ubos-admin backupinfo --in backups/BACKUP.ubos-backup --detail # gives siteid
+# sudo ubos-admin undeploy --all                                    # often handy
+sudo ubos-admin restore --in backups/BACKUPNAME.ubos-backup --newhostname '*' --siteid SITEIDFROMINFO
+```
+
+
 
 Once deployed, the site should be reachable at http://localhost:8080/deck
 

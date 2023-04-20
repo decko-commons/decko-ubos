@@ -20,6 +20,8 @@ module DeckoUbos
     config.paths['log'] = "/ubos/log/${package.name}-${appconfig.appconfigid}/production.log"
     config.log_level = :warn
 
+    config.default_html_view = :content
+
     # config.action_mailer.smtp_settings = { :address => 'localhost' }
 
     # config.email_defaults = { :from => '$ {installable.customizationpoints.sender_email.value}' }

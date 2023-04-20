@@ -2,7 +2,7 @@ developer=http://grasscommons.org/
 url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
-pkgver=0.15.4
+pkgver=0.15.5
 pkgrel=1
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
@@ -19,7 +19,7 @@ depends=(
   'smtp-server'
 )
 options=('!strip')
-sha512sums=('460426b9c143aaca9547320c9821dc4d03e28e4b017584b9d45ae052be1d96a1204e6acc8e9991c69ee26fb74ad964db255c6db69dc037be117a1df34aea56bb')
+sha512sums=('88cbae6d8c04cfd5c6264f4c91522c06e4df8c466ad1fcce3db032b5944bbfc37d8943d0d6f34530f30906b7c54bfddf93f3bf69f5d23f127ef022d44be722a7')
 
 
 build() {
