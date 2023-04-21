@@ -24,8 +24,6 @@ sudo ubos-admin update
 sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
 ```
 
-
-
 # Update to latest Decko version
 
 1. Start by updating gems (including decko) from OUTSIDE the container
@@ -42,33 +40,46 @@ bundle info decko # confirm version. may need to tweak Gemfile to get it to work
 - update decko version in PKGBUILD
 - reset pkgrel to 1 if it has been changed
 
-3. Run the following INSIDE the container:
+3. Run the following INSIDE the container in the home dir:
 
 ```
 updpkgsums   # update checksum in PKGBUILD
-makepkg -f   # generate a new package
 ```
+
+# Make and Install your decko package
+
+Run the following INSIDE the container in the home dir:
+
+```
+makepkg -f                                # generate a new package
+sudo pacman -U decko-*-any.pkg.tar.zst    # install a package you've generated
+```
+
 
 # Deploy a Deck
 
 Run the following INSIDE the container:
 
 ```
-sudo pacman -U decko-*-any.pkg.tar.zst          # install a package you've generated
+
+# sudo ubos-admin undeploy --all                # often handy
 sudo ubos-admin deploy --file sample-site.json  # deploy the site
 ```
+
+Once deployed, the site should be reachable at http://localhost:8080/deck
+
 
 # Restore a Deck from backups
 
 ```
-sudo ubos-admin backupinfo --in backups/BACKUP.ubos-backup --detail # gives siteid
 # sudo ubos-admin undeploy --all                                    # often handy
-sudo ubos-admin restore --in backups/BACKUPNAME.ubos-backup --newhostname '*' --siteid SITEIDFROMINFO
+sudo ubos-admin backupinfo --detail --in backups/BACKUP.ubos-backup # gives siteid
+sudo ubos-admin restore --newhostname '*' --in backups/BACKUPNAME.ubos-backup  --siteid SITEIDFROMINFO
 ```
 
+Once restored, the site should be reachable at http://localhost:8080  (unless the 
+backup specifies a different context)
 
-
-Once deployed, the site should be reachable at http://localhost:8080/deck
 
 # Run Test
 
