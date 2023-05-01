@@ -15,14 +15,14 @@ my $datadir = $config->getResolve( 'appconfig.datadir' );
 my $command;
 
 if ($operation eq 'install') {
-    $command = "decko seed";
+    $command = "decko setup";
 } elsif ($operation eq 'upgrade') {
     $command = "decko update";
 }
 
 if ($command) {
     my $out;
-    my $full_command = "cd $datadir; sudo -u http bundle-2.7 exec $command";
+    my $full_command = "cd $datadir; sudo -u http bundle exec $command";
     if( UBOS::Utils::myexec( $full_command, undef, \$out, \$out )) {
         # This will complain that it cannot write to ~http (/srv/http)
         # for the .bundle directory. Instead it will create a temporary

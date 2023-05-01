@@ -1,9 +1,11 @@
 .idea
+.irb_history
 pkg/
 src/
 *.tar
 *.tar.xz
 *.tar.zst
 *.zip
+decko/backups
 decko/gems
-backups
+decko/.bash_history

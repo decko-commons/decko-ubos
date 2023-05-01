@@ -10,9 +10,9 @@
 
   "roles" : {
     "apache2" : {
-      "fixedcontext" : "",
+      "defaultcontext" : "",
       "apache2modules" : [
-        "passenger27",
+        "passenger",
         "expires",
         "headers",
         "xsendfile"
