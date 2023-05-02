@@ -51,8 +51,7 @@ updpkgsums   # update checksum in PKGBUILD
 Run the following INSIDE the container in the home dir:
 
 ```
-sudo pacman -S ruby mod_passenger mariadb-clients imagemagick nodejs memcached mod_xsendfile smtp-server
-makepkg -f                                # generate a new package
+makepkg -f -s                             # generate a new package
 sudo pacman -U decko-*-any.pkg.tar.zst    # install a package you've generated
 ```
 
