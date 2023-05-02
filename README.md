@@ -20,7 +20,7 @@ docker exec -i -t -u ubosdev ubos-develop bash
 
 3. Get the latest ubos-admin and install dependencies from INSIDE the container
 ```
-sudo ubos-admin update
+sudo ubos-admin update -v --nokeyrefresh
 sudo pacman -S --noconfirm base-devel pacman-contrib webapptest
 ```
 
