@@ -3,7 +3,7 @@ url=https://decko.org/
 maintainer=${developer}
 pkgname=decko
 pkgver=0.15.5
-pkgrel=1
+pkgrel=2
 pkgdesc="A wiki approach to structured data and web design"
 arch=('any')
 license=("GPL")
@@ -17,6 +17,7 @@ depends=(
   'memcached'
   'mod_xsendfile'
   'smtp-server'
+  'ruby-bundler'
 )
 options=('!strip')
 sha512sums=('88cbae6d8c04cfd5c6264f4c91522c06e4df8c466ad1fcce3db032b5944bbfc37d8943d0d6f34530f30906b7c54bfddf93f3bf69f5d23f127ef022d44be722a7')
