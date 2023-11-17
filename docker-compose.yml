@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   ubos-develop:
-    container_name: ubos-develop
+    container_name: ubos-develop-${CHANNEL:-red}
     image: ubos/ubos-develop-${CHANNEL:-red}:latest
     working_dir: /home/ubosdev
     privileged: true
