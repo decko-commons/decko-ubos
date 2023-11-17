@@ -7,6 +7,7 @@ Packaging Decko tool for UBOS.
 1. Make sure you have docker (and docker compose) installed and then run the following from the root of this repo.
 
 ```
+docker compose pull
 docker compose up -d
 ```
 
