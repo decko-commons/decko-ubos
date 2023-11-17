@@ -17,6 +17,7 @@ depends=(
   'memcached'
   'mod_xsendfile'
   'smtp-server'
+  'ruby-bundler'
 )
 options=('!strip')
 sha256sums=('6a5345e2bdc724035d1062cf2b2f5b23fcb64e1143faef33c798084e76eb7ba7')
