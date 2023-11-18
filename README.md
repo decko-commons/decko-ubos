@@ -7,6 +7,7 @@ Packaging Decko tool for UBOS.
 1. Make sure you have docker (and docker compose) installed and then run the following from the root of this repo.
 
 ```
+docker compose pull
 docker compose up -d
 ```
 
@@ -15,7 +16,7 @@ May have to wait for services to start...
 2. Open shell.
 
 ```   
-docker exec -i -t -u ubosdev ubos-develop bash
+docker exec -i -t -u ubosdev ubos-develop-red bash
 ```
 
 3. Get the latest ubos-admin and install dependencies from INSIDE the container
